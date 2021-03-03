@@ -1,0 +1,9 @@
+plugins {}
+
+group = 'edu.austral.ingsis'
+version = '1.0.1'
+
+repositories {}
+
+dependencies {}
+
