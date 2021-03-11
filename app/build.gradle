@@ -1,17 +1,13 @@
 plugins {
     id 'application'
+    id 'my-library.java-common-conventions'
 }
 
 group = 'edu.austral.ingsis'
 version = '1.0.1'
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     implementation project(':lib')
-    testImplementation "junit:junit:4.13"
 }
 
 application {
