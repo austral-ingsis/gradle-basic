@@ -24,4 +24,8 @@ task hello(type: GreetingTask)
 task greeting(type: GreetingTask) {
     greeting = 'greetings from GreetingTask'
 }
- 
+
+task sayHi {
+    dependsOn 'hello'
+    dependsOn 'greeting'
+}
