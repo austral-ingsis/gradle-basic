@@ -16,3 +16,15 @@ dependencies {
 application {
     mainClass = 'edu.austral.ingsis.App'
 }
+
+task runApp(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+
+    main = 'edu.austral.ingsis.App'
+}
+
+task runOtherApp(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    
+    main = 'edu.austral.ingsis.OtherApp'
+}
