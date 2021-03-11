@@ -5,6 +5,10 @@ plugins {
 group = 'edu.austral.ingsis'
 version = '1.0.1'
 
-repositories {}
+repositories {
+    mavenCentral()
+}
 
-dependencies {}
+dependencies {
+    testImplementation "junit:junit:4.13"
+}
