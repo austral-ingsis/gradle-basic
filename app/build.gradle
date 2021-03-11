@@ -10,21 +10,18 @@ repositories {
 }
 
 dependencies {
-    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation "junit:junit:4.13"
 }
 
 application {
     mainClass = 'edu.austral.ingsis.App'
 }
 
-task runApp(type: JavaExec) {
-    classpath = sourceSets.main.runtimeClasspath
-
-    main = 'edu.austral.ingsis.App'
-}
-
-task runOtherApp(type: JavaExec) {
-    classpath = sourceSets.main.runtimeClasspath
-    
-    main = 'edu.austral.ingsis.OtherApp'
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'edu.austral.ingsis.App'
+        )
+    }
 }
