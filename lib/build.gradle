@@ -1,4 +1,6 @@
-plugins {}
+plugins {
+    id 'java-library'
+}
 
 group = 'edu.austral.ingsis'
 version = '1.0.1'
@@ -6,26 +8,3 @@ version = '1.0.1'
 repositories {}
 
 dependencies {}
-
-class GreetingTask extends DefaultTask {
-    @Input
-    String greeting = 'hello from GreetingTask'
-
-    @TaskAction
-    def greet() {
-        println greeting
-    }
-}
-
-// Use the default greeting
-task hello(type: GreetingTask)
-
-// Customize the greeting
-task greeting(type: GreetingTask) {
-    greeting = 'greetings from GreetingTask'
-}
-
-task sayHi {
-    dependsOn 'hello'
-    dependsOn 'greeting'
-}
