@@ -22,11 +22,10 @@ public class OperationAST extends AbstractAST{
 
     @Override
     public AST addAST(OperationAST newAST) throws BadTokenException {
+        if (getRightChild() == null) throw new BadTokenException();
         if (operatorTypeComparator.compare(newAST.getValue().getType(), getValue().getType()) > 0) {
-            if (getRightChild() == null) throw new BadTokenException();
             return new OperationAST(getValue(), getLeftChild(), getRightChild().addAST(newAST));
         }
-        if (getRightChild() == null) throw new BadTokenException();
         return new OperationAST(newAST.getValue(), newAST.getLeftChild() != null ? newAST.getLeftChild().addAST(this) : this, newAST.getRightChild());
     }
 

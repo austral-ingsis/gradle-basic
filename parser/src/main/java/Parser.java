@@ -33,7 +33,11 @@ public class Parser {
         this.tokens = tokens;
         result = null;
         position = -1;
-        generateAST();
+        advance();
+        while (currentToken != null) {
+            generateASTFromToken();
+            advance();
+        }
         return result;
     }
 
@@ -41,14 +45,6 @@ public class Parser {
         if (position < tokens.size() - 1) {
             currentToken = tokens.get(++position);
         } else currentToken = null;
-    }
-
-    void generateAST() throws BadTokenException {
-        advance();
-        while (currentToken != null) {
-            generateASTFromToken();
-            advance();
-        }
     }
 
     void generateASTFromToken() throws BadTokenException {
