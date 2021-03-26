@@ -9,4 +9,8 @@
 
 rootProject.name = 'my-library'
 include 'lib', 'app'
+include 'lexer'
+include 'parser'
+include 'interpreter'
+include 'structures'
 
