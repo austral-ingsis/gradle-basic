@@ -8,7 +8,6 @@ public class Lexer {
   private int position;
   private String currentStatement;
   private char currentChar;
-
   private static final String DIGITS = "0123456789";
   private static final String LETTERS = "abcdefghijklmnñopqrstuvwxyzABCDEGHIJKLMNÑOPQRSTUVWXYZ";
   private static final char ESC_CHAR = ';';
@@ -17,6 +16,7 @@ public class Lexer {
     tokens = new ArrayList<>();
     position = -1;
   }
+
   public List<Token> lex(String statement) {
     tokens = new ArrayList<>();
     position = -1;
