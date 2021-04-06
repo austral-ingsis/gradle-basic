@@ -4,6 +4,7 @@ import token.Token;
 import token.TokenType;
 
 public class Lexer {
+
   private List<Token> tokens;
   private int position;
   private String currentStatement;
