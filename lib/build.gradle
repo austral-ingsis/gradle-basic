@@ -1,7 +1,0 @@
-plugins {
-    id 'java-library'
-    id 'my-library.java-common-conventions'
-}
-
-group = 'edu.austral.ingsis'
-version = '1.0.1'

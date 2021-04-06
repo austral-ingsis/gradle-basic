@@ -1,5 +1,3 @@
 package token;
 
-public class TokenBuilder {
-
-}
+public class TokenBuilder {}
