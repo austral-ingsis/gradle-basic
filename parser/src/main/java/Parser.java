@@ -17,6 +17,7 @@
 // http://people.cs.ksu.edu/~schmidt/300s05/Lectures/GrammarNotes/compiler.html
 
 import ast.*;
+import builders.*;
 import exceptions.BadTokenException;
 import java.util.List;
 import token.Token;
@@ -26,11 +27,11 @@ public class Parser {
   private transient List<Token> tokens;
   private transient int position;
   private transient Token currentToken;
-  private transient AST result;
+  private transient ASTBuilder currentASTBuilder;
 
   AST parse(List<Token> tokens) throws BadTokenException {
     this.tokens = tokens;
-    result = null;
+    currentASTBuilder = null;
     position = 0;
     while (!shouldFinish()) {
       advance();
@@ -40,7 +41,7 @@ public class Parser {
     advance();
     if (currentToken.getType() != TokenType.ESC_CHAR)
       throw new BadTokenException("Last token should be ;");
-    return result;
+    return currentASTBuilder.buildAST();
   }
 
   boolean shouldFinish() {
@@ -67,46 +68,46 @@ public class Parser {
   }
 
   private void generateAssignationAST() throws BadTokenException {
-    if (result == null) {
+    if (currentASTBuilder == null) {
       throw new BadTokenException("First character cannot be an equals");
     }
-    result = result.addAST(new AssignationAST(currentToken));
+    currentASTBuilder = currentASTBuilder.addASTBuilder(new AssignationASTBuilder(currentToken));
   }
 
   private void generateLiteralAST() throws BadTokenException {
-    if (result == null) {
-      result = new LiteralAST(currentToken);
+    if (currentASTBuilder == null) {
+      currentASTBuilder = new LiteralASTBuilder(currentToken);
     } else {
-      result = result.addAST(new LiteralAST(currentToken));
+      currentASTBuilder = currentASTBuilder.addASTBuilder(new LiteralASTBuilder(currentToken));
     }
   }
 
   private void generateOperationAST() throws BadTokenException {
-    if (result == null) {
+    if (currentASTBuilder == null) {
       throw new BadTokenException("First token cannot be an operator");
     }
-    result = result.addAST(new OperationAST(currentToken));
+    currentASTBuilder = currentASTBuilder.addASTBuilder(new OperationASTBuilder(currentToken));
   }
 
   private void generateDeclarationAST() throws BadTokenException {
-    if (result == null) {
+    if (currentASTBuilder == null) {
       throw new BadTokenException("First token cannot be a colon");
     }
-    result = result.addAST(new DeclarationAST(currentToken));
+    currentASTBuilder = currentASTBuilder.addASTBuilder(new DeclarationASTBuilder(currentToken));
   }
 
   private void generateDataTypeAST() throws BadTokenException {
-    if (result == null) {
+    if (currentASTBuilder == null) {
       throw new BadTokenException("First token cannot be a data type");
     }
-    result = result.addAST(new DataTypeAST(currentToken));
+    currentASTBuilder = currentASTBuilder.addASTBuilder(new DataTypeASTBuilder(currentToken));
   }
 
   private void generateIdentifierAST() throws BadTokenException {
-    if (result == null) {
-      result = new IdentifierAST(currentToken);
+    if (currentASTBuilder == null) {
+      currentASTBuilder = new IdentifierASTBuilder(currentToken);
     } else {
-      result = result.addAST(new IdentifierAST(currentToken));
+      currentASTBuilder = currentASTBuilder.addASTBuilder(new IdentifierASTBuilder(currentToken));
     }
   }
 }

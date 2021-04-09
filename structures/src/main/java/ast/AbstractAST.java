@@ -3,7 +3,7 @@ package ast;
 import token.Token;
 
 public abstract class AbstractAST implements AST {
-  private Token value;
+  private final Token value;
   private AST leftChild;
   private AST rightChild;
 
