@@ -1,8 +1,8 @@
 package token;
 
 public class Token {
-  private TokenType type;
-  private String value;
+  private transient TokenType type;
+  private transient String value;
 
   public Token(TokenType type, String value) {
     this.type = type;

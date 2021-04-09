@@ -4,8 +4,8 @@ import token.Token;
 
 public abstract class AbstractASTBuilder implements ASTBuilder {
   private final Token value;
-  private ASTBuilder leftChild;
-  private ASTBuilder rightChild;
+  private transient ASTBuilder leftChild;
+  private transient ASTBuilder rightChild;
 
   public AbstractASTBuilder(Token value) {
     this.value = value;

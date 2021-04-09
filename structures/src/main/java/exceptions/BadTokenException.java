@@ -1,8 +1,9 @@
 package exceptions;
 
 public class BadTokenException extends Exception {
-  private String message;
-  private int column;
+  private transient String message;
+  private transient int column;
+  public static final long serialVersionUID = 4328743;
 
   public BadTokenException() {}
 

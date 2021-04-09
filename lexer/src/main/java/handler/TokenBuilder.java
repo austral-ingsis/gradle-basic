@@ -47,7 +47,7 @@ public class TokenBuilder {
   //       add(tokenType -> );
   //    }};
 
-  private String value;
+  private transient String value;
   private transient TokenType currentTokenType;
 
   public TokenBuilder() {
