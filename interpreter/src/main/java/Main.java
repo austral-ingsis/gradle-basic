@@ -11,15 +11,19 @@ public class Main {
   public static void main(String[] args) {
     String badLine1 = "let a: number = 5*3**+1;";
     String badLine2 = ": number = a;";
-    String badLine3 = "1 + number * 7 - a -b + 100";
-    String goodLine1 = "let a: number = 5*3+1- 2";
-    String goodLine2 = "1 + 2-4 * 7 - a -b + 100";
+    String badLine3 = "1 + number * 7 - a -b + 100;";
+    String badLine4 = "\"!21432@!@##^&  TW#@1235&^*kl.lK:@@;'., \" + 7;";
+    String badLine5 = "1 + 2-4 * 7 - a -b + 100";
+    String goodLine1 = "let a: number = 5*3+1- 2;";
+    String goodLine2 = "1 + 2-4 * 7 - a -b + 100;";
     String goodLine3 = "let a: number = a * a;";
 
     List<String> strings = new ArrayList<>();
     strings.add(badLine1);
     strings.add(badLine2);
     strings.add(badLine3);
+    strings.add(badLine4);
+    strings.add(badLine5);
     strings.add(goodLine1);
     strings.add(goodLine2);
     strings.add(goodLine3);
@@ -28,9 +32,9 @@ public class Main {
   }
 
   public static void interpret(String line) {
-    List<Token> generatedTokens = lexer.lex(line);
-    generatedTokens.forEach(token -> System.out.println(token.print()));
     try {
+      List<Token> generatedTokens = lexer.lex(line);
+      generatedTokens.forEach(token -> System.out.println(token.print()));
       AST ast = parser.parse(generatedTokens);
       System.out.println(printAST(ast));
     } catch (BadTokenException e) {

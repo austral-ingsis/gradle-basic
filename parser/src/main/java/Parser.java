@@ -20,29 +20,35 @@ import ast.*;
 import exceptions.BadTokenException;
 import java.util.List;
 import token.Token;
+import token.TokenType;
 
 public class Parser {
-  private List<Token> tokens;
-  private int position;
-  private Token currentToken;
-  private AST result;
+  private transient List<Token> tokens;
+  private transient int position;
+  private transient Token currentToken;
+  private transient AST result;
 
   AST parse(List<Token> tokens) throws BadTokenException {
     this.tokens = tokens;
     result = null;
-    position = -1;
-    advance();
-    while (currentToken != null) {
-      generateASTFromToken();
+    position = 0;
+    while (!shouldFinish()) {
       advance();
+      generateASTFromToken();
+      position = position + 1;
     }
+    advance();
+    if (currentToken.getType() != TokenType.ESC_CHAR)
+      throw new BadTokenException("Last token should be ;");
     return result;
   }
 
+  boolean shouldFinish() {
+    return position == tokens.size() - 1;
+  }
+
   void advance() {
-    if (position < tokens.size() - 1) {
-      currentToken = tokens.get(++position);
-    } else currentToken = null;
+    currentToken = tokens.get(position);
   }
 
   void generateASTFromToken() throws BadTokenException {
