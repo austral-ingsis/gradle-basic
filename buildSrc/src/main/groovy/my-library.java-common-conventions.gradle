@@ -9,6 +9,7 @@ version '1.0'
 
 repositories {
     mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 }
 
 dependencies {
@@ -26,6 +27,10 @@ googleJavaFormat {
 
 build {
     finalizedBy jacocoTestCoverageVerification
+}
+
+jacoco {
+    toolVersion = '0.8.7-SNAPSHOT'
 }
 
 jacocoTestCoverageVerification {
