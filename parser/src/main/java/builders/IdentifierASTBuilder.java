@@ -10,10 +10,6 @@ public class IdentifierASTBuilder extends AbstractASTBuilder {
     super(value);
   }
 
-  public IdentifierASTBuilder(Token value, ASTBuilder leftChild, ASTBuilder rightChild) {
-    super(value, leftChild, rightChild);
-  }
-
   @Override
   public ASTBuilder addASTBuilder(AssignationASTBuilder newAST) throws BadTokenException {
     if (newAST.getLeftChild() != null) throw new BadTokenException();

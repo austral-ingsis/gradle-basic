@@ -7,7 +7,7 @@ import token.TokenType;
 public class LexerTest {
   @Test
   public void tokenShouldContainAll() throws BadTokenException {
-    Lexer lexer = new Lexer();
+    Lexer lexer = new PrintScriptLexer();
     String statement = "let a: number = a * a;";
     List<Token> tokens = lexer.lex(statement);
     Assertions.assertEquals(
@@ -31,7 +31,7 @@ public class LexerTest {
 
   @Test
   public void tokenShouldContainAll_2() throws BadTokenException {
-    Lexer lexer = new Lexer();
+    Lexer lexer = new PrintScriptLexer();
     String statement = "let str: string = \"!21432@!@##^&  TW#@1235&^*kl.lK:@@;'., \";";
     List<Token> tokens = lexer.lex(statement);
     Assertions.assertEquals(

@@ -1,11 +1,11 @@
 import exceptions.BadTokenException;
 
 public class Interpreter {
-  private Lexer lexer;
-  private Parser parser;
+  private final transient Lexer lexer;
+  private final transient Parser parser;
 
   public Interpreter() {
-    this.lexer = new Lexer();
+    this.lexer = new PrintScriptLexer();
     this.parser = new Parser();
   }
 

@@ -5,7 +5,7 @@ import java.util.List;
 import token.Token;
 
 public class Main {
-  static Lexer lexer = new Lexer();
+  static Lexer lexer = new PrintScriptLexer();
   static Parser parser = new Parser();
 
   public static void main(String[] args) {
