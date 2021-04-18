@@ -17,7 +17,7 @@ public enum TokenType {
   LEFT_PARENTHESES(0),
   RIGHT_PARENTHESES(0),
   ESC_CHAR(0),
-  END_OF_INPUT(0);
+  SPACE_CHAR(0);
 
   private int precedence;
 

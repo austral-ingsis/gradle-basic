@@ -1,9 +1,10 @@
 import exceptions.BadTokenException;
 import handler.*;
-import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 import stream.CharacterStream;
 import token.Token;
+import token.TokenType;
 
 public class PrintScriptLexer implements Lexer {
   private static final List<TokenHandler> handlers =
@@ -22,9 +23,11 @@ public class PrintScriptLexer implements Lexer {
           push(new EqualsTokenHandler());
           push(new DivisionOperatorTokenHandler());
           push(new MultiplicationOperatorTokenHandler());
+          push(new DivisionOperatorTokenHandler());
+          push(new MinusOperatorTokenHandler());
           push(new PlusOperatorTokenHandler());
           push(new EscCharTokenHandler());
-          push(new EndOfLineTokenHandler());
+          push(new SpaceTokenHandler());
         }
       };
 
@@ -35,30 +38,25 @@ public class PrintScriptLexer implements Lexer {
     tokens = new ArrayList<>();
     CharacterStream stream = new CharacterStream(statement);
     generateTokens(stream);
-    return tokens;
+    return tokens.stream()
+        .filter(token -> token.getType() != TokenType.SPACE_CHAR)
+        .collect(Collectors.toList());
   }
 
-  private void generateTokens(CharacterStream stream)
-      throws BadTokenException { // agregar multiples espacios
+  private void generateTokens(CharacterStream stream) throws BadTokenException {
     Token currentToken =
         getNextToken(stream).orElseThrow(() -> new BadTokenException("Invalid token"));
+    tokens.add(currentToken);
 
     while (stream.hasNext()) {
-      tokens.add(currentToken);
       currentToken = getNextToken(stream).orElseThrow(() -> new BadTokenException("Invalid token"));
+      tokens.add(currentToken);
     }
   }
 
   private Optional<Token> getNextToken(CharacterStream stream) {
     return handlers.stream()
-        .map(
-            tokenHandler -> {
-              try {
-                return tokenHandler.handle(stream);
-              } catch (IOException e) {
-                throw new RuntimeException("IO Error");
-              }
-            })
+        .map(tokenHandler -> tokenHandler.handle(stream))
         .filter(Optional::isPresent)
         .findFirst()
         .orElse(Optional.empty());

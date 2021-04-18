@@ -1,6 +1,5 @@
 package handler;
 
-import java.io.IOException;
 import java.util.Optional;
 import stream.CharacterStream;
 import token.Token;
@@ -10,7 +9,7 @@ public class DivisionOperatorTokenHandler implements TokenHandler {
   private static final char DIVISION_CHAR = '/';
 
   @Override
-  public Optional<Token> handle(CharacterStream statement) throws IOException {
+  public Optional<Token> handle(CharacterStream statement) {
     char read = statement.peek();
     if (read == DIVISION_CHAR) {
       statement.skipNChars(1);

@@ -5,15 +5,15 @@ import stream.CharacterStream;
 import token.Token;
 import token.TokenType;
 
-public class EqualsTokenHandler implements TokenHandler {
-  private static final char EQUALS_CHAR = '=';
+public class SpaceTokenHandler implements TokenHandler {
+  private static final char SPACE_CHAR = ' ';
 
   @Override
   public Optional<Token> handle(CharacterStream statement) {
     char read = statement.peek();
-    if (read == EQUALS_CHAR) {
+    if (read == SPACE_CHAR) {
       statement.skipNChars(1);
-      return Optional.of(new Token(TokenType.EQUALS, String.valueOf(EQUALS_CHAR)));
+      return Optional.of(new Token(TokenType.SPACE_CHAR, String.valueOf(SPACE_CHAR)));
     }
     return Optional.empty();
   }

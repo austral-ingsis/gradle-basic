@@ -15,7 +15,7 @@ public class CharacterStream {
   }
 
   public boolean hasNext() {
-    return position < chars.size() - 1;
+    return position < chars.size();
   }
 
   public char next() {
@@ -23,19 +23,17 @@ public class CharacterStream {
   }
 
   public void skipNChars(int n) {
-    position = Math.max(position + n, chars.size() - 1);
+    position += n;
   }
 
   public char peek() {
-    return chars.get(position + 1);
+    return chars.get(position);
   }
 
   public String peekNChars(int n) {
     StringBuilder result = new StringBuilder();
-    for (int i = position; i < position + n; i++) {
-      if (i < chars.size() - 1) {
-        result.append(chars.get(i));
-      }
+    for (int i = position; i < Math.min(position + n, chars.size()); i++) {
+      result.append(chars.get(i));
     }
     return result.toString();
   }
