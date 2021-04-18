@@ -1,6 +1,6 @@
-#Custom programming language 'PrintScript' interpreter. 
+# Custom programming language 'PrintScript' interpreter. 
 
-##Branching strategy
+## Branching strategy
 
 We use feature branch strategy on our project. 
 * For each new feature, the developer creates a new branch from mainline called '/feature/FEATURE_NAME' where FEATURE_NAME is replaced by the name of the feature.
