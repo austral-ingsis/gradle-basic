@@ -8,12 +8,14 @@ import token.Token;
 import token.TokenType;
 
 public class ParserTest {
+  private static String VARIABLE_KEYWORD = "let";
+
   @Test
   public void testParser() throws BadTokenException {
     Parser parser = new Parser();
 
     List<Token> generatedTokens = new ArrayList<>();
-    generatedTokens.add(new Token(TokenType.VARIABLE_KEYWORD, "let"));
+    generatedTokens.add(new Token(TokenType.VARIABLE_KEYWORD, VARIABLE_KEYWORD));
     generatedTokens.add(new Token(TokenType.IDENTIFIER, "a"));
     generatedTokens.add(new Token(TokenType.COLON, ":"));
     generatedTokens.add(new Token(TokenType.NUMBER_TYPE, "number"));
@@ -44,7 +46,7 @@ public class ParserTest {
     Parser parser = new Parser();
 
     List<Token> generatedTokens = new ArrayList<>();
-    generatedTokens.add(new Token(TokenType.VARIABLE_KEYWORD, "let"));
+    generatedTokens.add(new Token(TokenType.VARIABLE_KEYWORD, VARIABLE_KEYWORD));
     generatedTokens.add(new Token(TokenType.IDENTIFIER, "a"));
     generatedTokens.add(new Token(TokenType.COLON, ":"));
     generatedTokens.add(new Token(TokenType.STRING_TYPE, "string"));
@@ -81,11 +83,10 @@ public class ParserTest {
   }
 
   @Test
-  public void testParserShouldFail() throws BadTokenException {
+  public void testParserShouldFail() {
     List<Token> generatedTokens = new ArrayList<>();
-    Parser parser = new Parser();
 
-    generatedTokens.add(new Token(TokenType.VARIABLE_KEYWORD, "let"));
+    generatedTokens.add(new Token(TokenType.VARIABLE_KEYWORD, VARIABLE_KEYWORD));
     generatedTokens.add(new Token(TokenType.IDENTIFIER, "a"));
     generatedTokens.add(new Token(TokenType.COLON, ":"));
     generatedTokens.add(new Token(TokenType.NUMBER_TYPE, "number"));
@@ -99,15 +100,18 @@ public class ParserTest {
     generatedTokens.add(new Token(TokenType.NUMBER, "1"));
     generatedTokens.add(new Token(TokenType.ESC_CHAR, ";"));
 
-    Assertions.assertThrows(BadTokenException.class, () -> parser.parse(generatedTokens));
+    Assertions.assertThrows(
+        BadTokenException.class,
+        () -> {
+          Parser parser = new Parser();
+          parser.parse(generatedTokens);
+        });
   }
 
   @Test
   public void testParserShouldFail_2() {
-    Parser parser = new Parser();
-
     List<Token> generatedTokens = new ArrayList<>();
-    generatedTokens.add(new Token(TokenType.VARIABLE_KEYWORD, "let"));
+    generatedTokens.add(new Token(TokenType.VARIABLE_KEYWORD, VARIABLE_KEYWORD));
     generatedTokens.add(new Token(TokenType.IDENTIFIER, "a"));
     generatedTokens.add(new Token(TokenType.COLON, ":"));
     generatedTokens.add(new Token(TokenType.NUMBER_TYPE, "number"));
@@ -120,6 +124,11 @@ public class ParserTest {
     generatedTokens.add(new Token(TokenType.MINUS_OPERATOR, "-"));
     generatedTokens.add(new Token(TokenType.NUMBER, "2"));
 
-    Assertions.assertThrows(BadTokenException.class, () -> parser.parse(generatedTokens));
+    Assertions.assertThrows(
+        BadTokenException.class,
+        () -> {
+          Parser parser = new Parser();
+          parser.parse(generatedTokens);
+        });
   }
 }

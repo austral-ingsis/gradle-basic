@@ -21,7 +21,12 @@ public class StringTokenHandler implements TokenHandler {
       return Optional.empty();
     }
 
-    CharacterStream temp = new CharacterStream(statement.peekRemainingChars());
+    String remainingChars = statement.peekRemainingChars();
+
+    if (remainingChars.substring(1).indexOf(QUOTES) == -1) {
+      return Optional.empty();
+    }
+    CharacterStream temp = new CharacterStream(remainingChars);
     StringBuilder result = new StringBuilder();
 
     boolean valid = true;
@@ -35,12 +40,8 @@ public class StringTokenHandler implements TokenHandler {
         valid = false;
       }
     }
-
-    if (read == QUOTES) {
-      String stringResult = result.toString();
-      statement.skipNChars(stringResult.length() + 2);
-      return Optional.of(new Token(TokenType.STRING, stringResult));
-    }
-    return Optional.empty();
+    String stringResult = result.toString();
+    statement.skipNChars(stringResult.length() + 2);
+    return Optional.of(new Token(TokenType.STRING, stringResult));
   }
 }

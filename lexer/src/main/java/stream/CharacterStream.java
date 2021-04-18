@@ -3,8 +3,8 @@ package stream;
 import java.util.LinkedList;
 
 public class CharacterStream {
-  private LinkedList<Character> chars;
-  private int position;
+  private transient LinkedList<Character> chars;
+  private transient int position;
 
   public CharacterStream(String str) {
     this.chars = new LinkedList<>();
@@ -14,8 +14,12 @@ public class CharacterStream {
     this.position = 0;
   }
 
-  public boolean hasNext() {
+  public boolean shouldRead() {
     return position < chars.size();
+  }
+
+  public boolean hasNext() {
+    return position < chars.size() - 1;
   }
 
   public char next() {

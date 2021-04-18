@@ -44,12 +44,9 @@ public class PrintScriptLexer implements Lexer {
   }
 
   private void generateTokens(CharacterStream stream) throws BadTokenException {
-    Token currentToken =
-        getNextToken(stream).orElseThrow(() -> new BadTokenException("Invalid token"));
-    tokens.add(currentToken);
-
-    while (stream.hasNext()) {
-      currentToken = getNextToken(stream).orElseThrow(() -> new BadTokenException("Invalid token"));
+    while (stream.shouldRead()) {
+      Token currentToken =
+          getNextToken(stream).orElseThrow(() -> new BadTokenException("Invalid token"));
       tokens.add(currentToken);
     }
   }
