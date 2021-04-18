@@ -29,3 +29,5 @@ jobs:
       run: ./gradlew test
     - name: Publish with Gradle
       run: ./gradlew publish
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
