@@ -10,10 +10,6 @@ public class DataTypeASTBuilder extends AbstractASTBuilder {
     super(value);
   }
 
-  public DataTypeASTBuilder(Token value, ASTBuilder leftChild, ASTBuilder rightChild) {
-    super(value, leftChild, rightChild);
-  }
-
   @Override
   public AST buildAST() {
     return new DataTypeAST(

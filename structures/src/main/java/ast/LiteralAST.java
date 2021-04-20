@@ -1,6 +1,5 @@
 package ast;
 
-import ASTVisitor.ExecutionContext;
 import ASTVisitor.ASTVisitor;
 import token.Token;
 
@@ -15,7 +14,7 @@ public class LiteralAST extends AbstractAST {
   }
 
   @Override
-  public ExecutionContext accept(ASTVisitor visitor, ExecutionContext executionContext) {
-    return visitor.visitLiteralAST(this, executionContext);
+  public void accept(ASTVisitor visitor) {
+    visitor.visitLiteralAST(this);
   }
 }

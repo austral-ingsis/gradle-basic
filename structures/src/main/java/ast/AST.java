@@ -1,6 +1,5 @@
 package ast;
 
-import ASTVisitor.ExecutionContext;
 import ASTVisitor.ASTVisitor;
 import token.Token;
 
@@ -11,5 +10,5 @@ public interface AST {
 
   AST getLeftChild();
 
-  ExecutionContext accept(ASTVisitor visitor, ExecutionContext executionContext);
+  void accept(ASTVisitor visitor);
 }

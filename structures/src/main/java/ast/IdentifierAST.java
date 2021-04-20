@@ -1,6 +1,5 @@
 package ast;
 
-import ASTVisitor.ExecutionContext;
 import ASTVisitor.ASTVisitor;
 import token.Token;
 
@@ -15,7 +14,7 @@ public class IdentifierAST extends AbstractAST {
   }
 
   @Override
-  public ExecutionContext accept(ASTVisitor visitor, ExecutionContext executionContext) {
-    return visitor.visitIdentifierAST(this, executionContext);
+  public void accept(ASTVisitor visitor) {
+    visitor.visitIdentifierAST(this);
   }
 }

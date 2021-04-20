@@ -1,6 +1,5 @@
 package ast;
 
-import ASTVisitor.ExecutionContext;
 import ASTVisitor.ASTVisitor;
 import token.Token;
 
@@ -14,9 +13,8 @@ public class AssignationAST extends AbstractAST {
     super(value, leftChild, rightChild);
   }
 
-
   @Override
-  public ExecutionContext accept(ASTVisitor visitor, ExecutionContext executionContext) {
-    return visitor.visitAssignationAST(this, executionContext);
+  public void accept(ASTVisitor visitor) {
+    visitor.visitAssignationAST(this);
   }
 }

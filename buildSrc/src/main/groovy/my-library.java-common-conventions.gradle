@@ -3,9 +3,11 @@ plugins {
     id 'jacoco'
     id 'com.github.sherter.google-java-format'
     id 'pmd'
+    id 'maven-publish'
 }
 
-version '1.0'
+group='com.ingsis'
+version='0.0.2'
 
 repositories {
     mavenCentral()
@@ -39,6 +41,24 @@ jacocoTestCoverageVerification {
             limit {
                 minimum = 0.0
             }
+        }
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/facundobocalandro/PrintScript")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
         }
     }
 }

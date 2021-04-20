@@ -10,10 +10,6 @@ public class LiteralASTBuilder extends AbstractASTBuilder {
     super(value);
   }
 
-  public LiteralASTBuilder(Token value, ASTBuilder leftChild, ASTBuilder rightChild) {
-    super(value, leftChild, rightChild);
-  }
-
   @Override
   public ASTBuilder addASTBuilder(OperationASTBuilder newAST) throws BadTokenException {
     if (newAST.getLeftChild() != null) throw new BadTokenException();
