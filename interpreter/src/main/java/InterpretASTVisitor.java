@@ -1,5 +1,4 @@
-package ASTVisitor;
-
+import ASTVisitor.ASTVisitor;
 import ast.*;
 
 public class InterpretASTVisitor implements ASTVisitor {

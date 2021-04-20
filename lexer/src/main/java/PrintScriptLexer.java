@@ -17,9 +17,13 @@ public class PrintScriptLexer implements Lexer {
           push(new NumberTypeTokenHandler());
           push(new StringTypeTokenHandler());
           push(new VariableKeywordTokenHandler());
+          push(new IfTokenHandler());
+          push(new ElseTokenHandler());
           push(new RightParenthesesTokenHandler());
           push(new LeftParenthesesTokenHandler());
           push(new ColonTokenHandler());
+          push(new LeftKeyTokenHandler());
+          push(new RightKeyTokenHandler());
           push(new EqualsTokenHandler());
           push(new DivisionOperatorTokenHandler());
           push(new MultiplicationOperatorTokenHandler());

@@ -17,6 +17,7 @@ public class Main {
     //    String goodLine1 = "let a: number = 5*3+1- 2;";
     //    String goodLine2 = "1 + 2-4 * 7 - a -b + 100;";
     //    String goodLine3 = "let a: number = a * a;";
+    //    String goodLine4 = "let a: number = a * a;";
     //
     //    List<String> strings = new ArrayList<>();
     //    strings.add(badLine1);
@@ -27,11 +28,13 @@ public class Main {
     //    strings.add(goodLine1);
     //    strings.add(goodLine2);
     //    strings.add(goodLine3);
+    //    strings.add(goodLine4);
     //
     //    strings.forEach(Main::interpret);
     interpreter.interpret("let a: number = 5;");
     interpreter.interpret("let b: number = 15;");
     interpreter.interpret("let c: number = 3;");
+    interpreter.interpret("c = 100;");
     interpreter.interpret("a * b + c / a - b;");
   }
 
