@@ -36,6 +36,19 @@ public class StringASTBuilder extends AbstractASTBuilder {
   }
 
   @Override
+  public ASTBuilder addASTBuilder(EqualsComparatorASTBuilder newAST) throws BadTokenException {
+    return new EqualsComparatorASTBuilder(
+        newAST.getValue(),
+        newAST.getLeftChild() == null ? this : newAST.getLeftChild().addASTBuilder(this),
+        newAST.getRightChild());
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(EscCharASTBuilder newAST) throws BadTokenException {
+    return this;
+  }
+
+  @Override
   public AST buildAST() throws ASTBuildException {
     return new StringAST(
         getValue(),

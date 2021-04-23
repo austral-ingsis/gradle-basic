@@ -65,6 +65,11 @@ public class StringAssignationASTBuilder extends AbstractASTBuilder {
   }
 
   @Override
+  public ASTBuilder addASTBuilder(EscCharASTBuilder newAST) throws BadTokenException {
+    return this;
+  }
+
+  @Override
   public AST buildAST() throws ASTBuildException {
     if (!valid) throw new ASTBuildException("Should be associated to number");
     return new AssignationAST(

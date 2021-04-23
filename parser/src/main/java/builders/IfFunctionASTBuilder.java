@@ -5,6 +5,7 @@ import ast.IfFunctionAST;
 import exceptions.ASTBuildException;
 import exceptions.BadTokenException;
 import token.Token;
+import token.TokenType;
 
 public class IfFunctionASTBuilder extends AbstractASTBuilder {
 
@@ -241,6 +242,25 @@ public class IfFunctionASTBuilder extends AbstractASTBuilder {
           getValue(),
           getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
           getRightChild());
+    }
+    return new IfFunctionASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(LeftKeyASTBuilder newAST) throws BadTokenException {
+    if (getRightChild() == null) {
+      return new IfFunctionASTBuilder(
+          getValue(), getLeftChild(), new IfBodyASTBuilder(new Token(TokenType.IF_BODY, "")));
+    }
+    return new IfFunctionASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(EscCharASTBuilder newAST) throws BadTokenException {
+    if (getRightChild() == null) {
+      throw new BadTokenException();
     }
     return new IfFunctionASTBuilder(
         getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));

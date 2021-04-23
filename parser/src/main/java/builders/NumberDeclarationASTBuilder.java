@@ -25,4 +25,9 @@ public class NumberDeclarationASTBuilder extends AbstractASTBuilder {
         getLeftChild() == null ? null : getLeftChild().buildAST(),
         getRightChild() == null ? null : getRightChild().buildAST());
   }
+
+  @Override
+  public ASTBuilder addASTBuilder(EscCharASTBuilder newAST) throws BadTokenException {
+    return this;
+  }
 }

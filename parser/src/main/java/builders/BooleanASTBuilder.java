@@ -25,6 +25,11 @@ public class BooleanASTBuilder extends AbstractASTBuilder {
   }
 
   @Override
+  public ASTBuilder addASTBuilder(EscCharASTBuilder newAST) throws BadTokenException {
+    return this;
+  }
+
+  @Override
   public AST buildAST() throws ASTBuildException {
     return new AssignationAST(
         getValue(),

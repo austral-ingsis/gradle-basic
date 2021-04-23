@@ -49,35 +49,64 @@ public class EqualsComparatorASTBuilder extends AbstractASTBuilder {
   }
 
   @Override
-  public ASTBuilder addASTBuilder(IdentifierASTBuilder newAST) throws BadTokenException {
-    return new EqualsComparatorASTBuilder(
-        getValue(),
-        getLeftChild(),
-        getRightChild() == null ? newAST : getRightChild().addASTBuilder(newAST));
+  public ASTBuilder addASTBuilder(PlusASTBuilder newAST) throws BadTokenException {
+    if (getRightChild() == null) throw new BadTokenException();
+    return new EqualsComparatorASTBuilder(getValue(), getLeftChild(), newAST);
   }
 
   @Override
-  public ASTBuilder addASTBuilder(IdentifierASTBuilder newAST) throws BadTokenException {
-    return new EqualsComparatorASTBuilder(
-        getValue(),
-        getLeftChild(),
-        getRightChild() == null ? newAST : getRightChild().addASTBuilder(newAST));
+  public ASTBuilder addASTBuilder(MinusASTBuilder newAST) throws BadTokenException {
+    if (getRightChild() == null) throw new BadTokenException();
+    return new EqualsComparatorASTBuilder(getValue(), getLeftChild(), newAST);
   }
 
   @Override
-  public ASTBuilder addASTBuilder(IdentifierASTBuilder newAST) throws BadTokenException {
-    return new EqualsComparatorASTBuilder(
-        getValue(),
-        getLeftChild(),
-        getRightChild() == null ? newAST : getRightChild().addASTBuilder(newAST));
+  public ASTBuilder addASTBuilder(MultiplicationASTBuilder newAST) throws BadTokenException {
+    if (getRightChild() == null) throw new BadTokenException();
+    return new EqualsComparatorASTBuilder(getValue(), getLeftChild(), newAST);
   }
 
   @Override
-  public ASTBuilder addASTBuilder(IdentifierASTBuilder newAST) throws BadTokenException {
-    return new EqualsComparatorASTBuilder(
-        getValue(),
-        getLeftChild(),
-        getRightChild() == null ? newAST : getRightChild().addASTBuilder(newAST));
+  public ASTBuilder addASTBuilder(DivisionASTBuilder newAST) throws BadTokenException {
+    if (getRightChild() == null) throw new BadTokenException();
+    return new EqualsComparatorASTBuilder(getValue(), getLeftChild(), newAST);
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(EqualsComparatorASTBuilder newAST) throws BadTokenException {
+    if (getRightChild() == null) throw new BadTokenException();
+    return new EqualsComparatorASTBuilder(getValue(), getLeftChild(), newAST);
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(GreaterComparatorASTBuilder newAST) throws BadTokenException {
+    if (getRightChild() == null) throw new BadTokenException();
+    return new EqualsComparatorASTBuilder(getValue(), getLeftChild(), newAST);
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(GreaterOrEqualsComparatorASTBuilder newAST)
+      throws BadTokenException {
+    if (getRightChild() == null) throw new BadTokenException();
+    return new EqualsComparatorASTBuilder(getValue(), getLeftChild(), newAST);
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(MinorComparatorASTBuilder newAST) throws BadTokenException {
+    if (getRightChild() == null) throw new BadTokenException();
+    return new EqualsComparatorASTBuilder(getValue(), getLeftChild(), newAST);
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(MinorOrEqualsComparatorASTBuilder newAST)
+      throws BadTokenException {
+    if (getRightChild() == null) throw new BadTokenException();
+    return new EqualsComparatorASTBuilder(getValue(), getLeftChild(), newAST);
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(EscCharASTBuilder newAST) throws BadTokenException {
+    return this;
   }
 
   @Override

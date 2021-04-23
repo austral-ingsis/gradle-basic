@@ -22,7 +22,6 @@ import exceptions.ASTBuildException;
 import exceptions.BadTokenException;
 import java.util.List;
 import token.Token;
-import token.TokenType;
 
 public class Parser {
   private transient List<Token> tokens;
@@ -40,8 +39,6 @@ public class Parser {
     }
     advance();
     if (currentASTBuilder == null) return null;
-    if (currentToken.getType() != TokenType.ESC_CHAR)
-      throw new BadTokenException("Last token should be ;");
     return currentASTBuilder.buildAST();
   }
 
@@ -97,7 +94,7 @@ public class Parser {
       throw new BadTokenException(position);
     }
 
-    return null;
+    return currentASTBuilder;
   }
 
   private ASTBuilder generateAssignationAST(ASTBuilder currentASTBuilder) throws BadTokenException {

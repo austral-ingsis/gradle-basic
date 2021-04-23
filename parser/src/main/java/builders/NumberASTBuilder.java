@@ -36,6 +36,53 @@ public class NumberASTBuilder extends AbstractASTBuilder {
   }
 
   @Override
+  public ASTBuilder addASTBuilder(EqualsComparatorASTBuilder newAST) throws BadTokenException {
+    return new EqualsComparatorASTBuilder(
+        newAST.getValue(),
+        newAST.getLeftChild() == null ? this : newAST.getLeftChild().addASTBuilder(this),
+        newAST.getRightChild());
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(GreaterComparatorASTBuilder newAST) throws BadTokenException {
+    return new GreaterComparatorASTBuilder(
+        newAST.getValue(),
+        newAST.getLeftChild() == null ? this : newAST.getLeftChild().addASTBuilder(this),
+        newAST.getRightChild());
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(GreaterOrEqualsComparatorASTBuilder newAST)
+      throws BadTokenException {
+    return new GreaterOrEqualsComparatorASTBuilder(
+        newAST.getValue(),
+        newAST.getLeftChild() == null ? this : newAST.getLeftChild().addASTBuilder(this),
+        newAST.getRightChild());
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(MinorComparatorASTBuilder newAST) throws BadTokenException {
+    return new MinorComparatorASTBuilder(
+        newAST.getValue(),
+        newAST.getLeftChild() == null ? this : newAST.getLeftChild().addASTBuilder(this),
+        newAST.getRightChild());
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(MinorOrEqualsComparatorASTBuilder newAST)
+      throws BadTokenException {
+    return new MinorOrEqualsComparatorASTBuilder(
+        newAST.getValue(),
+        newAST.getLeftChild() == null ? this : newAST.getLeftChild().addASTBuilder(this),
+        newAST.getRightChild());
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(EscCharASTBuilder newAST) throws BadTokenException {
+    return this;
+  }
+
+  @Override
   public AST buildAST() throws ASTBuildException {
     return new NumberAST(
         getValue(),

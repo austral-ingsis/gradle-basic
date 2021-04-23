@@ -33,6 +33,35 @@ public class MinorOrEqualsComparatorASTBuilder extends AbstractASTBuilder {
   }
 
   @Override
+  public ASTBuilder addASTBuilder(PlusASTBuilder newAST) throws BadTokenException {
+    if (getRightChild() == null) throw new BadTokenException();
+    return new MinorOrEqualsComparatorASTBuilder(getValue(), getLeftChild(), newAST);
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(MinusASTBuilder newAST) throws BadTokenException {
+    if (getRightChild() == null) throw new BadTokenException();
+    return new MinorOrEqualsComparatorASTBuilder(getValue(), getLeftChild(), newAST);
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(MultiplicationASTBuilder newAST) throws BadTokenException {
+    if (getRightChild() == null) throw new BadTokenException();
+    return new MinorOrEqualsComparatorASTBuilder(getValue(), getLeftChild(), newAST);
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(DivisionASTBuilder newAST) throws BadTokenException {
+    if (getRightChild() == null) throw new BadTokenException();
+    return new MinorOrEqualsComparatorASTBuilder(getValue(), getLeftChild(), newAST);
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(EscCharASTBuilder newAST) throws BadTokenException {
+    return this;
+  }
+
+  @Override
   public AST buildAST() throws ASTBuildException {
     return new MinorOrEqualsComparatorAST(
         getValue(), getLeftChild().buildAST(), getRightChild().buildAST());

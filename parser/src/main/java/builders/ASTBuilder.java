@@ -103,4 +103,12 @@ public interface ASTBuilder {
       throws BadTokenException {
     throw new BadTokenException();
   }
+
+  default ASTBuilder addASTBuilder(LeftKeyASTBuilder newAST) throws BadTokenException {
+    throw new BadTokenException();
+  }
+
+  default ASTBuilder addASTBuilder(EscCharASTBuilder newAST) throws BadTokenException {
+    throw new BadTokenException();
+  }
 }

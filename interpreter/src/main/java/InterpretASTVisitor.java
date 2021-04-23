@@ -85,8 +85,7 @@ public class InterpretASTVisitor implements ASTVisitor {
   @Override
   public void visitIfBodyAST(IfBodyAST ifBodyAST) {
     boolean conditional = executionContext.getConditionalResult();
-    if (conditional)
-      ifBodyAST.getLeftChild().accept(this);
+    if (conditional) ifBodyAST.getLeftChild().accept(this);
     else ifBodyAST.getRightChild().accept(this);
   }
 
@@ -117,7 +116,8 @@ public class InterpretASTVisitor implements ASTVisitor {
   }
 
   @Override
-  public void visitGreaterOrEqualsComparatorAST(GreaterOrEqualsComparatorAST greaterOrEqualsComparatorAST) {
+  public void visitGreaterOrEqualsComparatorAST(
+      GreaterOrEqualsComparatorAST greaterOrEqualsComparatorAST) {
     greaterOrEqualsComparatorAST.getLeftChild().accept(this);
     int left = executionContext.getResult();
     greaterOrEqualsComparatorAST.getRightChild().accept(this);
@@ -137,7 +137,8 @@ public class InterpretASTVisitor implements ASTVisitor {
   }
 
   @Override
-  public void visitMinorOrEqualsComparatorAST(MinorOrEqualsComparatorAST minorOrEqualsComparatorAST) {
+  public void visitMinorOrEqualsComparatorAST(
+      MinorOrEqualsComparatorAST minorOrEqualsComparatorAST) {
     minorOrEqualsComparatorAST.getLeftChild().accept(this);
     int left = executionContext.getResult();
     minorOrEqualsComparatorAST.getRightChild().accept(this);
@@ -147,7 +148,5 @@ public class InterpretASTVisitor implements ASTVisitor {
   }
 
   @Override
-  public void visitBooleanTypeAST(BooleanTypeAST booleanTypeAST) {
-
-  }
+  public void visitBooleanTypeAST(BooleanTypeAST booleanTypeAST) {}
 }
