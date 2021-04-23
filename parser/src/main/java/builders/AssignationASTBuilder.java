@@ -58,7 +58,51 @@ public class AssignationASTBuilder extends AbstractASTBuilder {
   }
 
   @Override
+  public ASTBuilder addASTBuilder(EqualsComparatorASTBuilder newAST) throws BadTokenException {
+    ASTBuilder rightChild = getRightChild();
+    if (rightChild == null) throw new BadTokenException();
+    return new AssignationASTBuilder(getValue(), getLeftChild(), rightChild.addASTBuilder(newAST));
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(GreaterComparatorASTBuilder newAST) throws BadTokenException {
+    ASTBuilder rightChild = getRightChild();
+    if (rightChild == null) throw new BadTokenException();
+    return new AssignationASTBuilder(getValue(), getLeftChild(), rightChild.addASTBuilder(newAST));
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(GreaterOrEqualsComparatorASTBuilder newAST)
+      throws BadTokenException {
+    ASTBuilder rightChild = getRightChild();
+    if (rightChild == null) throw new BadTokenException();
+    return new AssignationASTBuilder(getValue(), getLeftChild(), rightChild.addASTBuilder(newAST));
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(MinorComparatorASTBuilder newAST) throws BadTokenException {
+    ASTBuilder rightChild = getRightChild();
+    if (rightChild == null) throw new BadTokenException();
+    return new AssignationASTBuilder(getValue(), getLeftChild(), rightChild.addASTBuilder(newAST));
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(MinorOrEqualsComparatorASTBuilder newAST)
+      throws BadTokenException {
+    ASTBuilder rightChild = getRightChild();
+    if (rightChild == null) throw new BadTokenException();
+    return new AssignationASTBuilder(getValue(), getLeftChild(), rightChild.addASTBuilder(newAST));
+  }
+
+  @Override
   public ASTBuilder addASTBuilder(IdentifierASTBuilder newAST) throws BadTokenException {
+    ASTBuilder rightChild = getRightChild();
+    return new AssignationASTBuilder(
+        getValue(), getLeftChild(), rightChild == null ? newAST : rightChild.addASTBuilder(newAST));
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(BooleanASTBuilder newAST) throws BadTokenException {
     ASTBuilder rightChild = getRightChild();
     return new AssignationASTBuilder(
         getValue(), getLeftChild(), rightChild == null ? newAST : rightChild.addASTBuilder(newAST));

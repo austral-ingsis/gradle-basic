@@ -15,6 +15,7 @@ public class IfBlockASTBuilder implements ASTBuilder {
 
   public IfBlockASTBuilder(Token value) {
     this.value = value;
+    this.children = new LinkedList<>();
   }
 
   public IfBlockASTBuilder(Token value, List<ASTBuilder> children) {

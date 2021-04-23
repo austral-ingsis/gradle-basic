@@ -28,6 +28,20 @@ public class DeclarationASTBuilder extends AbstractASTBuilder {
   }
 
   @Override
+  public ASTBuilder addASTBuilder(BooleanTypeASTBuilder newAST) throws BadTokenException {
+    if (getRightChild() != null) throw new BadTokenException();
+    return new DeclarationASTBuilder(getValue(), getLeftChild(), newAST);
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(AssignationASTBuilder newAST) throws BadTokenException {
+    return new AssignationASTBuilder(
+        getValue(),
+        newAST.getLeftChild() == null ? this : newAST.getLeftChild().addASTBuilder(this),
+        newAST.getRightChild());
+  }
+
+  @Override
   public AST buildAST() throws ASTBuildException {
     return new DeclarationAST(
         getValue(),

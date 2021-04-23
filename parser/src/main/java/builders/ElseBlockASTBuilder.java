@@ -15,6 +15,7 @@ public class ElseBlockASTBuilder implements ASTBuilder {
 
   public ElseBlockASTBuilder(Token value) {
     this.value = value;
+    this.children = new LinkedList<>();
   }
 
   public ElseBlockASTBuilder(Token value, List<ASTBuilder> children) {

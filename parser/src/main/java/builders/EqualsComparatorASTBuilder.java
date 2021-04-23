@@ -49,6 +49,38 @@ public class EqualsComparatorASTBuilder extends AbstractASTBuilder {
   }
 
   @Override
+  public ASTBuilder addASTBuilder(IdentifierASTBuilder newAST) throws BadTokenException {
+    return new EqualsComparatorASTBuilder(
+        getValue(),
+        getLeftChild(),
+        getRightChild() == null ? newAST : getRightChild().addASTBuilder(newAST));
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(IdentifierASTBuilder newAST) throws BadTokenException {
+    return new EqualsComparatorASTBuilder(
+        getValue(),
+        getLeftChild(),
+        getRightChild() == null ? newAST : getRightChild().addASTBuilder(newAST));
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(IdentifierASTBuilder newAST) throws BadTokenException {
+    return new EqualsComparatorASTBuilder(
+        getValue(),
+        getLeftChild(),
+        getRightChild() == null ? newAST : getRightChild().addASTBuilder(newAST));
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(IdentifierASTBuilder newAST) throws BadTokenException {
+    return new EqualsComparatorASTBuilder(
+        getValue(),
+        getLeftChild(),
+        getRightChild() == null ? newAST : getRightChild().addASTBuilder(newAST));
+  }
+
+  @Override
   public AST buildAST() throws ASTBuildException {
     return new EqualsComparatorAST(
         getValue(),
