@@ -9,6 +9,8 @@ public class ExecutionContext {
 
   private int result;
 
+  private boolean conditionalResult;
+
   public ExecutionContext() {
     this.variables = new HashMap<>();
   }
@@ -33,6 +35,26 @@ public class ExecutionContext {
     return a;
   }
 
+  public boolean isEqual(int a, int b) {
+    return a == b;
+  }
+
+  public boolean isGreater(int a, int b) {
+    return a > b;
+  }
+
+  public boolean isGreaterOrEqual(int a, int b) {
+    return a >= b;
+  }
+
+  public boolean isMinor(int a, int b) {
+    return a < b;
+  }
+
+  public boolean isMinorOrEqual(int a, int b) {
+    return a <= b;
+  }
+
   public String getVariableValue(String variable) {
     return variables.get(variable);
   }
@@ -55,5 +77,13 @@ public class ExecutionContext {
 
   public void setTemporalIdentifier(String temporalIdentifier) {
     this.temporalIdentifier = temporalIdentifier;
+  }
+
+  public boolean getConditionalResult() {
+    return conditionalResult;
+  }
+
+  public void setConditionalResult(boolean conditionalResult) {
+    this.conditionalResult = conditionalResult;
   }
 }

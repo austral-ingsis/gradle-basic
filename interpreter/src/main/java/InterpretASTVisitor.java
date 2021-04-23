@@ -81,4 +81,73 @@ public class InterpretASTVisitor implements ASTVisitor {
   public void visitNumberAST(NumberAST numberAST) {
     executionContext.setResult(Integer.parseInt(numberAST.getValue().getValue()));
   }
+
+  @Override
+  public void visitIfBodyAST(IfBodyAST ifBodyAST) {
+    boolean conditional = executionContext.getConditionalResult();
+    if (conditional)
+      ifBodyAST.getLeftChild().accept(this);
+    else ifBodyAST.getRightChild().accept(this);
+  }
+
+  @Override
+  public void visitIfFunctionAST(IfFunctionAST ifFunctionAST) {
+    ifFunctionAST.getLeftChild().accept(this);
+    ifFunctionAST.getRightChild().accept(this);
+  }
+
+  @Override
+  public void visitEqualsComparatorAST(EqualsComparatorAST equalsComparatorAST) {
+    equalsComparatorAST.getLeftChild().accept(this);
+    int left = executionContext.getResult();
+    equalsComparatorAST.getRightChild().accept(this);
+    int right = executionContext.getResult();
+    boolean result = executionContext.isEqual(left, right);
+    executionContext.setConditionalResult(result);
+  }
+
+  @Override
+  public void visitGreaterComparatorAST(GreaterComparatorAST greaterComparatorAST) {
+    greaterComparatorAST.getLeftChild().accept(this);
+    int left = executionContext.getResult();
+    greaterComparatorAST.getRightChild().accept(this);
+    int right = executionContext.getResult();
+    boolean result = executionContext.isGreater(left, right);
+    executionContext.setConditionalResult(result);
+  }
+
+  @Override
+  public void visitGreaterOrEqualsComparatorAST(GreaterOrEqualsComparatorAST greaterOrEqualsComparatorAST) {
+    greaterOrEqualsComparatorAST.getLeftChild().accept(this);
+    int left = executionContext.getResult();
+    greaterOrEqualsComparatorAST.getRightChild().accept(this);
+    int right = executionContext.getResult();
+    boolean result = executionContext.isGreaterOrEqual(left, right);
+    executionContext.setConditionalResult(result);
+  }
+
+  @Override
+  public void visitMinorComparatorAST(MinorComparatorAST minorComparatorAST) {
+    minorComparatorAST.getLeftChild().accept(this);
+    int left = executionContext.getResult();
+    minorComparatorAST.getRightChild().accept(this);
+    int right = executionContext.getResult();
+    boolean result = executionContext.isMinor(left, right);
+    executionContext.setConditionalResult(result);
+  }
+
+  @Override
+  public void visitMinorOrEqualsComparatorAST(MinorOrEqualsComparatorAST minorOrEqualsComparatorAST) {
+    minorOrEqualsComparatorAST.getLeftChild().accept(this);
+    int left = executionContext.getResult();
+    minorOrEqualsComparatorAST.getRightChild().accept(this);
+    int right = executionContext.getResult();
+    boolean result = executionContext.isMinorOrEqual(left, right);
+    executionContext.setConditionalResult(result);
+  }
+
+  @Override
+  public void visitBooleanTypeAST(BooleanTypeAST booleanTypeAST) {
+
+  }
 }
