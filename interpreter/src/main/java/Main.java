@@ -1,4 +1,5 @@
 import ast.AST;
+import exceptions.ASTBuildException;
 import exceptions.BadTokenException;
 import java.util.List;
 import token.Token;
@@ -44,7 +45,7 @@ public class Main {
       generatedTokens.forEach(token -> System.out.println(token.print()));
       AST ast = parser.parse(generatedTokens);
       System.out.println(printAST(ast));
-    } catch (BadTokenException e) {
+    } catch (BadTokenException | ASTBuildException e) {
       System.out.println(e.getMessage());
     }
   }

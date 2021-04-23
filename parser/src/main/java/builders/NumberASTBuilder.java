@@ -1,26 +1,14 @@
 package builders;
 
-import ast.*;
+import ast.AST;
+import ast.NumberAST;
 import exceptions.ASTBuildException;
 import exceptions.BadTokenException;
 import token.Token;
 
-public class IdentifierASTBuilder extends AbstractASTBuilder {
-
-  public IdentifierASTBuilder(Token value) {
+public class NumberASTBuilder extends AbstractASTBuilder {
+  public NumberASTBuilder(Token value) {
     super(value);
-  }
-
-  @Override
-  public ASTBuilder addASTBuilder(AssignationASTBuilder newAST) throws BadTokenException {
-    if (newAST.getLeftChild() != null) throw new BadTokenException();
-    return new AssignationASTBuilder(newAST.getValue(), this, newAST.getRightChild());
-  }
-
-  @Override
-  public ASTBuilder addASTBuilder(DeclarationASTBuilder newAST) {
-    if (newAST.getLeftChild() != null) throw new RuntimeException();
-    return new DeclarationASTBuilder(newAST.getValue(), this, newAST.getRightChild());
   }
 
   @Override
@@ -49,7 +37,7 @@ public class IdentifierASTBuilder extends AbstractASTBuilder {
 
   @Override
   public AST buildAST() throws ASTBuildException {
-    return new IdentifierAST(
+    return new NumberAST(
         getValue(),
         getLeftChild() == null ? null : getLeftChild().buildAST(),
         getRightChild() == null ? null : getRightChild().buildAST());

@@ -18,6 +18,7 @@
 
 import ast.*;
 import builders.*;
+import exceptions.ASTBuildException;
 import exceptions.BadTokenException;
 import java.util.List;
 import token.Token;
@@ -28,7 +29,7 @@ public class Parser {
   private transient int position;
   private transient Token currentToken;
 
-  AST parse(List<Token> tokens) throws BadTokenException {
+  AST parse(List<Token> tokens) throws BadTokenException, ASTBuildException {
     this.tokens = tokens;
     ASTBuilder currentASTBuilder = null;
     position = 0;
@@ -55,11 +56,23 @@ public class Parser {
   ASTBuilder generateASTFromToken(ASTBuilder currentASTBuilder) throws BadTokenException {
     try {
       switch (currentToken.getType()) {
-        case NUMBER, STRING -> {
-          return generateLiteralAST(currentASTBuilder);
+        case NUMBER -> {
+          return generateNumberAST(currentASTBuilder);
         }
-        case PLUS_OPERATOR, MINUS_OPERATOR, MULTIPLICATION_OPERATOR, DIVISION_OPERATOR -> {
-          return generateOperationAST(currentASTBuilder);
+        case STRING -> {
+          return generateStringAST(currentASTBuilder);
+        }
+        case PLUS_OPERATOR -> {
+          return generatePlusAST(currentASTBuilder);
+        }
+        case MINUS_OPERATOR -> {
+          return generateMinusAST(currentASTBuilder);
+        }
+        case MULTIPLICATION_OPERATOR -> {
+          return generateMultiplicationAST(currentASTBuilder);
+        }
+        case DIVISION_OPERATOR -> {
+          return generateDivisionAST(currentASTBuilder);
         }
         case EQUALS -> {
           return generateAssignationAST(currentASTBuilder);
@@ -67,11 +80,17 @@ public class Parser {
         case COLON -> {
           return generateDeclarationAST(currentASTBuilder);
         }
-        case NUMBER_TYPE, STRING_TYPE -> {
-          return generateDataTypeAST(currentASTBuilder);
+        case NUMBER_TYPE -> {
+          return generateNumberTypeAST(currentASTBuilder);
+        }
+        case STRING_TYPE -> {
+          return generateStringTypeAST(currentASTBuilder);
         }
         case IDENTIFIER -> {
           return generateIdentifierAST(currentASTBuilder);
+        }
+        case IF_FUNCTION -> {
+          return generateIfFunctionAST(currentASTBuilder);
         }
       }
     } catch (BadTokenException e) {
@@ -88,19 +107,49 @@ public class Parser {
     return currentASTBuilder.addASTBuilder(new AssignationASTBuilder(currentToken));
   }
 
-  private ASTBuilder generateLiteralAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+  private ASTBuilder generateNumberAST(ASTBuilder currentASTBuilder) throws BadTokenException {
     if (currentASTBuilder == null) {
-      return new LiteralASTBuilder(currentToken);
+      return new NumberASTBuilder(currentToken);
     } else {
-      return currentASTBuilder.addASTBuilder(new LiteralASTBuilder(currentToken));
+      return currentASTBuilder.addASTBuilder(new NumberASTBuilder(currentToken));
     }
   }
 
-  private ASTBuilder generateOperationAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+  private ASTBuilder generateStringAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+    if (currentASTBuilder == null) {
+      return new StringASTBuilder(currentToken);
+    } else {
+      return currentASTBuilder.addASTBuilder(new StringASTBuilder(currentToken));
+    }
+  }
+
+  private ASTBuilder generatePlusAST(ASTBuilder currentASTBuilder) throws BadTokenException {
     if (currentASTBuilder == null) {
       throw new BadTokenException("First token cannot be an operator");
     }
-    return currentASTBuilder.addASTBuilder(new OperationASTBuilder(currentToken));
+    return currentASTBuilder.addASTBuilder(new PlusASTBuilder(currentToken));
+  }
+
+  private ASTBuilder generateMinusAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+    if (currentASTBuilder == null) {
+      throw new BadTokenException("First token cannot be an operator");
+    }
+    return currentASTBuilder.addASTBuilder(new MinusASTBuilder(currentToken));
+  }
+
+  private ASTBuilder generateMultiplicationAST(ASTBuilder currentASTBuilder)
+      throws BadTokenException {
+    if (currentASTBuilder == null) {
+      throw new BadTokenException("First token cannot be an operator");
+    }
+    return currentASTBuilder.addASTBuilder(new MultiplicationASTBuilder(currentToken));
+  }
+
+  private ASTBuilder generateDivisionAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+    if (currentASTBuilder == null) {
+      throw new BadTokenException("First token cannot be an operator");
+    }
+    return currentASTBuilder.addASTBuilder(new DivisionASTBuilder(currentToken));
   }
 
   private ASTBuilder generateDeclarationAST(ASTBuilder currentASTBuilder) throws BadTokenException {
@@ -110,11 +159,18 @@ public class Parser {
     return currentASTBuilder.addASTBuilder(new DeclarationASTBuilder(currentToken));
   }
 
-  private ASTBuilder generateDataTypeAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+  private ASTBuilder generateNumberTypeAST(ASTBuilder currentASTBuilder) throws BadTokenException {
     if (currentASTBuilder == null) {
       throw new BadTokenException("First token cannot be a data type");
     }
-    return currentASTBuilder.addASTBuilder(new DataTypeASTBuilder(currentToken));
+    return currentASTBuilder.addASTBuilder(new NumberTypeASTBuilder(currentToken));
+  }
+
+  private ASTBuilder generateStringTypeAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+    if (currentASTBuilder == null) {
+      throw new BadTokenException("First token cannot be a data type");
+    }
+    return currentASTBuilder.addASTBuilder(new StringTypeASTBuilder(currentToken));
   }
 
   private ASTBuilder generateIdentifierAST(ASTBuilder currentASTBuilder) throws BadTokenException {
@@ -122,6 +178,14 @@ public class Parser {
       return new IdentifierASTBuilder(currentToken);
     } else {
       return currentASTBuilder.addASTBuilder(new IdentifierASTBuilder(currentToken));
+    }
+  }
+
+  private ASTBuilder generateIfFunctionAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+    if (currentASTBuilder == null) {
+      return new IfFunctionASTBuilder(currentToken);
+    } else {
+      return currentASTBuilder.addASTBuilder(new IfFunctionASTBuilder(currentToken));
     }
   }
 }

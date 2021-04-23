@@ -1,4 +1,5 @@
 import ast.AST;
+import exceptions.ASTBuildException;
 import exceptions.BadTokenException;
 import java.util.List;
 import token.Token;
@@ -23,7 +24,7 @@ public class Interpreter {
       AST ast = parser.parse(generatedTokens);
       ast.accept(interpretASTVisitor);
       System.out.println(executionContext.getResult());
-    } catch (BadTokenException e) {
+    } catch (BadTokenException | ASTBuildException e) {
       System.out.println(e.getMessage());
     }
   }

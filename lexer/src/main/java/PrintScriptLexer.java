@@ -10,15 +10,17 @@ public class PrintScriptLexer implements Lexer {
   private static final List<TokenHandler> handlers =
       new LinkedList<>() {
         {
-          push(new StringTokenHandler());
-          push(new IdentifierTokenHandler());
-          push(new NumberTokenHandler());
+          push(new BooleanTokenHandler());
+          push(new BooleanTypeTokenHandler());
           push(new FunctionNameTokenHandler());
-          push(new NumberTypeTokenHandler());
           push(new StringTypeTokenHandler());
+          push(new NumberTypeTokenHandler());
           push(new VariableKeywordTokenHandler());
           push(new IfTokenHandler());
           push(new ElseTokenHandler());
+          push(new StringTokenHandler());
+          push(new IdentifierTokenHandler());
+          push(new NumberTokenHandler());
           push(new RightParenthesesTokenHandler());
           push(new LeftParenthesesTokenHandler());
           push(new ColonTokenHandler());
@@ -32,6 +34,10 @@ public class PrintScriptLexer implements Lexer {
           push(new PlusOperatorTokenHandler());
           push(new EscCharTokenHandler());
           push(new SpaceTokenHandler());
+          push(new GreaterComparatorTokenHandler());
+          push(new GreaterOrEqualsComparatorTokenHandler());
+          push(new MinorComparatorTokenHandler());
+          push(new MinorOrEqualsComparatorTokenHandler());
         }
       };
 

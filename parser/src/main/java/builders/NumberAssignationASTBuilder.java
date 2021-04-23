@@ -1,29 +1,19 @@
 package builders;
 
-import ast.*;
+import ast.AST;
+import ast.AssignationAST;
 import exceptions.ASTBuildException;
 import exceptions.BadTokenException;
 import token.Token;
 
-public class AssignationASTBuilder extends AbstractASTBuilder {
+public class NumberAssignationASTBuilder extends AbstractASTBuilder {
 
-  public AssignationASTBuilder(Token value) {
-    super(value);
-  }
-
-  public AssignationASTBuilder(Token value, ASTBuilder leftChild, ASTBuilder rightChild) {
+  public NumberAssignationASTBuilder(Token value, ASTBuilder leftChild, ASTBuilder rightChild) {
     super(value, leftChild, rightChild);
   }
 
   @Override
   public ASTBuilder addASTBuilder(NumberASTBuilder newAST) throws BadTokenException {
-    ASTBuilder rightChild = getRightChild();
-    return new AssignationASTBuilder(
-        getValue(), getLeftChild(), rightChild == null ? newAST : rightChild.addASTBuilder(newAST));
-  }
-
-  @Override
-  public ASTBuilder addASTBuilder(StringASTBuilder newAST) throws BadTokenException {
     ASTBuilder rightChild = getRightChild();
     return new AssignationASTBuilder(
         getValue(), getLeftChild(), rightChild == null ? newAST : rightChild.addASTBuilder(newAST));

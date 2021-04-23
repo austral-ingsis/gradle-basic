@@ -4,15 +4,15 @@ import ASTVisitor.ASTVisitor;
 import java.util.List;
 import token.Token;
 
-public class IfBlockAST implements AST {
+public class ElseBlockAST implements AST {
   private final Token value;
   private transient List<AST> children;
 
-  public IfBlockAST(Token value) {
+  public ElseBlockAST(Token value) {
     this.value = value;
   }
 
-  public IfBlockAST(Token value, List<AST> children) {
+  public ElseBlockAST(Token value, List<AST> children) {
     this.value = value;
     this.children = children;
   }

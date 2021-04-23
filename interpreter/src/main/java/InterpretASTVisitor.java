@@ -9,30 +9,39 @@ public class InterpretASTVisitor implements ASTVisitor {
   }
 
   @Override
-  public void visitOperationAST(OperationAST operationAST) {
-    operationAST.getLeftChild().accept(this);
+  public void visitPlusAST(PlusAST plusAST) {
+    plusAST.getLeftChild().accept(this);
     int left = executionContext.getResult();
-    operationAST.getRightChild().accept(this);
+    plusAST.getRightChild().accept(this);
     int right = executionContext.getResult();
-
-    switch (operationAST.getValue().getType()) {
-      case PLUS_OPERATOR:
-        executionContext.sum(left, right);
-        break;
-      case MINUS_OPERATOR:
-        executionContext.min(left, right);
-        break;
-      case MULTIPLICATION_OPERATOR:
-        executionContext.mult(left, right);
-        break;
-      case DIVISION_OPERATOR:
-        executionContext.div(left, right);
-    }
+    executionContext.sum(left, right);
   }
 
   @Override
-  public void visitLiteralAST(LiteralAST literalAST) {
-    executionContext.setResult(Integer.parseInt(literalAST.getValue().getValue()));
+  public void visitMinusAST(MinusAST minusAST) {
+    minusAST.getLeftChild().accept(this);
+    int left = executionContext.getResult();
+    minusAST.getRightChild().accept(this);
+    int right = executionContext.getResult();
+    executionContext.min(left, right);
+  }
+
+  @Override
+  public void visitMultiplicationAST(MultiplicationAST multiplicationAST) {
+    multiplicationAST.getLeftChild().accept(this);
+    int left = executionContext.getResult();
+    multiplicationAST.getRightChild().accept(this);
+    int right = executionContext.getResult();
+    executionContext.mult(left, right);
+  }
+
+  @Override
+  public void visitDivisionAST(DivisionAST divisionAST) {
+    divisionAST.getLeftChild().accept(this);
+    int left = executionContext.getResult();
+    divisionAST.getRightChild().accept(this);
+    int right = executionContext.getResult();
+    executionContext.div(left, right);
   }
 
   @Override
@@ -45,7 +54,10 @@ public class InterpretASTVisitor implements ASTVisitor {
   }
 
   @Override
-  public void visitDataTypeAST(DataTypeAST dataTypeAST) {}
+  public void visitNumberTypeAST(NumberTypeAST numberTypeAST) {}
+
+  @Override
+  public void visitStringTypeAST(StringTypeAST stringTypeAST) {}
 
   @Override
   public void visitIdentifierAST(IdentifierAST identifierAST) {
@@ -58,5 +70,15 @@ public class InterpretASTVisitor implements ASTVisitor {
   @Override
   public void visitDeclarationAST(DeclarationAST declarationAST) {
     declarationAST.getLeftChild().accept(this);
+  }
+
+  @Override
+  public void visitStringAST(StringAST stringAST) {
+    executionContext.setResult(Integer.parseInt(stringAST.getValue().getValue()));
+  }
+
+  @Override
+  public void visitNumberAST(NumberAST numberAST) {
+    executionContext.setResult(Integer.parseInt(numberAST.getValue().getValue()));
   }
 }

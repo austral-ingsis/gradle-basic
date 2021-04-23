@@ -1,18 +1,19 @@
 package builders;
 
 import ast.AST;
-import ast.DataTypeAST;
+import ast.NumberTypeAST;
+import exceptions.ASTBuildException;
 import token.Token;
 
-public class DataTypeASTBuilder extends AbstractASTBuilder {
+public class NumberTypeASTBuilder extends AbstractASTBuilder {
 
-  public DataTypeASTBuilder(Token value) {
+  public NumberTypeASTBuilder(Token value) {
     super(value);
   }
 
   @Override
-  public AST buildAST() {
-    return new DataTypeAST(
+  public AST buildAST() throws ASTBuildException {
+    return new NumberTypeAST(
         getValue(),
         getLeftChild() == null ? null : getLeftChild().buildAST(),
         getRightChild() == null ? null : getRightChild().buildAST());
