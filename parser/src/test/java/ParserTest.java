@@ -123,6 +123,7 @@ public class ParserTest {
     generatedTokens.add(new Token(TokenType.PLUS_OPERATOR, "+"));
     generatedTokens.add(new Token(TokenType.NUMBER, "1"));
     generatedTokens.add(new Token(TokenType.MINUS_OPERATOR, "-"));
+    generatedTokens.add(new Token(TokenType.MINUS_OPERATOR, "-"));
     generatedTokens.add(new Token(TokenType.NUMBER, "2"));
 
     Assertions.assertThrows(

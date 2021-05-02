@@ -7,6 +7,7 @@ import stream.CharacterStream;
 import token.Token;
 import token.TokenType;
 
+@SuppressWarnings("PMD")
 public class IdentifierTokenHandler implements TokenHandler {
   private static final String LETTERS = "abcdefghijklmnñopqrstuvwxyzABCDEGHIJKLMNÑOPQRSTUVWXYZ";
   private static final String NUMBERS = "0123456789";

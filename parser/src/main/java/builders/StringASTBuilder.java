@@ -38,14 +38,9 @@ public class StringASTBuilder extends AbstractASTBuilder {
   @Override
   public ASTBuilder addASTBuilder(EqualsComparatorASTBuilder newAST) throws BadTokenException {
     return new EqualsComparatorASTBuilder(
-<<<<<<< Updated upstream
         newAST.getValue(),
         newAST.getLeftChild() == null ? this : newAST.getLeftChild().addASTBuilder(this),
         newAST.getRightChild());
-=======
-            newAST.getValue(),
-            newAST.getLeftChild() == null ? this : newAST.getLeftChild().addASTBuilder(this), newAST.getRightChild());
->>>>>>> Stashed changes
   }
 
   @Override

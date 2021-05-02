@@ -34,52 +34,25 @@ public class MinorComparatorASTBuilder extends AbstractASTBuilder {
   @Override
   public ASTBuilder addASTBuilder(PlusASTBuilder newAST) throws BadTokenException {
     if (getRightChild() == null) throw new BadTokenException();
-<<<<<<< Updated upstream
     return new MinorComparatorASTBuilder(getValue(), getLeftChild(), newAST);
-=======
-    return new MinorComparatorASTBuilder(
-            getValue(),
-            getLeftChild(),
-            newAST);
->>>>>>> Stashed changes
   }
 
   @Override
   public ASTBuilder addASTBuilder(MinusASTBuilder newAST) throws BadTokenException {
     if (getRightChild() == null) throw new BadTokenException();
-<<<<<<< Updated upstream
     return new MinorComparatorASTBuilder(getValue(), getLeftChild(), newAST);
-=======
-    return new MinorComparatorASTBuilder(
-            getValue(),
-            getLeftChild(),
-            newAST);
->>>>>>> Stashed changes
   }
 
   @Override
   public ASTBuilder addASTBuilder(MultiplicationASTBuilder newAST) throws BadTokenException {
     if (getRightChild() == null) throw new BadTokenException();
-<<<<<<< Updated upstream
     return new MinorComparatorASTBuilder(getValue(), getLeftChild(), newAST);
-=======
-    return new MinorComparatorASTBuilder(
-            getValue(),
-            getLeftChild(),
-            newAST);
->>>>>>> Stashed changes
   }
 
   @Override
   public ASTBuilder addASTBuilder(DivisionASTBuilder newAST) throws BadTokenException {
     if (getRightChild() == null) throw new BadTokenException();
-<<<<<<< Updated upstream
     return new MinorComparatorASTBuilder(getValue(), getLeftChild(), newAST);
-=======
-    return new MinorComparatorASTBuilder(
-            getValue(),
-            getLeftChild(), newAST);
->>>>>>> Stashed changes
   }
 
   @Override

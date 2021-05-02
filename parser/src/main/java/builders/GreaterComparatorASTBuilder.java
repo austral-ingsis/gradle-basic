@@ -35,52 +35,25 @@ public class GreaterComparatorASTBuilder extends AbstractASTBuilder {
   @Override
   public ASTBuilder addASTBuilder(PlusASTBuilder newAST) throws BadTokenException {
     if (getRightChild() == null) throw new BadTokenException();
-<<<<<<< Updated upstream
     return new GreaterComparatorASTBuilder(getValue(), getLeftChild(), newAST);
-=======
-    return new GreaterComparatorASTBuilder(
-            getValue(),
-            getLeftChild(),
-            newAST);
->>>>>>> Stashed changes
   }
 
   @Override
   public ASTBuilder addASTBuilder(MinusASTBuilder newAST) throws BadTokenException {
     if (getRightChild() == null) throw new BadTokenException();
-<<<<<<< Updated upstream
     return new GreaterComparatorASTBuilder(getValue(), getLeftChild(), newAST);
-=======
-    return new GreaterComparatorASTBuilder(
-            getValue(),
-            getLeftChild(),
-            newAST);
->>>>>>> Stashed changes
   }
 
   @Override
   public ASTBuilder addASTBuilder(MultiplicationASTBuilder newAST) throws BadTokenException {
     if (getRightChild() == null) throw new BadTokenException();
-<<<<<<< Updated upstream
     return new GreaterComparatorASTBuilder(getValue(), getLeftChild(), newAST);
-=======
-    return new GreaterComparatorASTBuilder(
-            getValue(),
-            getLeftChild(),
-            newAST);
->>>>>>> Stashed changes
   }
 
   @Override
   public ASTBuilder addASTBuilder(DivisionASTBuilder newAST) throws BadTokenException {
     if (getRightChild() == null) throw new BadTokenException();
-<<<<<<< Updated upstream
     return new GreaterComparatorASTBuilder(getValue(), getLeftChild(), newAST);
-=======
-    return new GreaterComparatorASTBuilder(
-            getValue(),
-            getLeftChild(), newAST);
->>>>>>> Stashed changes
   }
 
   @Override
@@ -88,10 +61,6 @@ public class GreaterComparatorASTBuilder extends AbstractASTBuilder {
     return this;
   }
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
   @Override
   public AST buildAST() throws ASTBuildException {
     return new GreaterComparatorAST(

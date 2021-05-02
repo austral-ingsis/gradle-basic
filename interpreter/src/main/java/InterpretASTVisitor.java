@@ -2,7 +2,7 @@ import ASTVisitor.ASTVisitor;
 import ast.*;
 
 public class InterpretASTVisitor implements ASTVisitor {
-  private final ExecutionContext executionContext;
+  private final transient ExecutionContext executionContext;
 
   public InterpretASTVisitor(ExecutionContext executionContext) {
     this.executionContext = executionContext;

@@ -27,6 +27,8 @@ public class Parser {
   private transient List<Token> tokens;
   private transient int position;
   private transient Token currentToken;
+  private static final String FIRST_TOKEN_OPERATOR_ERROR = "First token cannot be an operator";
+  private static final String FIRST_TOKEN_COMPARATOR_ERROR = "First token cannot be a comparator";
 
   AST parse(List<Token> tokens) throws BadTokenException, ASTBuildException {
     this.tokens = tokens;
@@ -152,14 +154,14 @@ public class Parser {
 
   private ASTBuilder generatePlusAST(ASTBuilder currentASTBuilder) throws BadTokenException {
     if (currentASTBuilder == null) {
-      throw new BadTokenException("First token cannot be an operator");
+      throw new BadTokenException(FIRST_TOKEN_OPERATOR_ERROR);
     }
     return currentASTBuilder.addASTBuilder(new PlusASTBuilder(currentToken));
   }
 
   private ASTBuilder generateMinusAST(ASTBuilder currentASTBuilder) throws BadTokenException {
     if (currentASTBuilder == null) {
-      throw new BadTokenException("First token cannot be an operator");
+      throw new BadTokenException(FIRST_TOKEN_OPERATOR_ERROR);
     }
     return currentASTBuilder.addASTBuilder(new MinusASTBuilder(currentToken));
   }
@@ -167,14 +169,14 @@ public class Parser {
   private ASTBuilder generateMultiplicationAST(ASTBuilder currentASTBuilder)
       throws BadTokenException {
     if (currentASTBuilder == null) {
-      throw new BadTokenException("First token cannot be an operator");
+      throw new BadTokenException(FIRST_TOKEN_OPERATOR_ERROR);
     }
     return currentASTBuilder.addASTBuilder(new MultiplicationASTBuilder(currentToken));
   }
 
   private ASTBuilder generateDivisionAST(ASTBuilder currentASTBuilder) throws BadTokenException {
     if (currentASTBuilder == null) {
-      throw new BadTokenException("First token cannot be an operator");
+      throw new BadTokenException(FIRST_TOKEN_OPERATOR_ERROR);
     }
     return currentASTBuilder.addASTBuilder(new DivisionASTBuilder(currentToken));
   }
@@ -240,41 +242,46 @@ public class Parser {
     }
   }
 
-  private ASTBuilder generateEqualsComparatorAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+  private ASTBuilder generateEqualsComparatorAST(ASTBuilder currentASTBuilder)
+      throws BadTokenException {
     if (currentASTBuilder == null) {
-      throw new BadTokenException("First token cannot be a comparator");
+      throw new BadTokenException(FIRST_TOKEN_COMPARATOR_ERROR);
     } else {
       return currentASTBuilder.addASTBuilder(new EqualsComparatorASTBuilder(currentToken));
     }
   }
 
-  private ASTBuilder generateGreaterComparatorAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+  private ASTBuilder generateGreaterComparatorAST(ASTBuilder currentASTBuilder)
+      throws BadTokenException {
     if (currentASTBuilder == null) {
-      throw new BadTokenException("First token cannot be a comparator");
+      throw new BadTokenException(FIRST_TOKEN_COMPARATOR_ERROR);
     } else {
       return currentASTBuilder.addASTBuilder(new GreaterComparatorASTBuilder(currentToken));
     }
   }
 
-  private ASTBuilder generateGreaterOrEqualsComparatorAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+  private ASTBuilder generateGreaterOrEqualsComparatorAST(ASTBuilder currentASTBuilder)
+      throws BadTokenException {
     if (currentASTBuilder == null) {
-      throw new BadTokenException("First token cannot be a comparator");
+      throw new BadTokenException(FIRST_TOKEN_COMPARATOR_ERROR);
     } else {
       return currentASTBuilder.addASTBuilder(new GreaterOrEqualsComparatorASTBuilder(currentToken));
     }
   }
 
-  private ASTBuilder generateMinorComparatorAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+  private ASTBuilder generateMinorComparatorAST(ASTBuilder currentASTBuilder)
+      throws BadTokenException {
     if (currentASTBuilder == null) {
-      throw new BadTokenException("First token cannot be a comparator");
+      throw new BadTokenException(FIRST_TOKEN_COMPARATOR_ERROR);
     } else {
       return currentASTBuilder.addASTBuilder(new MinorComparatorASTBuilder(currentToken));
     }
   }
 
-  private ASTBuilder generateMinorOrEqualsComparatorAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+  private ASTBuilder generateMinorOrEqualsComparatorAST(ASTBuilder currentASTBuilder)
+      throws BadTokenException {
     if (currentASTBuilder == null) {
-      throw new BadTokenException("First token cannot be a comparator");
+      throw new BadTokenException(FIRST_TOKEN_COMPARATOR_ERROR);
     } else {
       return currentASTBuilder.addASTBuilder(new MinorOrEqualsComparatorASTBuilder(currentToken));
     }

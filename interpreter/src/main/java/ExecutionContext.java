@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class ExecutionContext {
 
-  private final Map<String, String> variables;
+  private final transient Map<String, String> variables;
 
   private String temporalIdentifier;
 

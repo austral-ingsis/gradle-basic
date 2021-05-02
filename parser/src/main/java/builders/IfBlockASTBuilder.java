@@ -282,7 +282,8 @@ public class IfBlockASTBuilder implements ASTBuilder {
   }
 
   @Override
-  public ASTBuilder addASTBuilder(GreaterOrEqualsComparatorASTBuilder newAST) throws BadTokenException {
+  public ASTBuilder addASTBuilder(GreaterOrEqualsComparatorASTBuilder newAST)
+      throws BadTokenException {
     List<ASTBuilder> newChildren = new LinkedList<>(children);
     if (position >= children.size()) {
       newChildren.add(newAST);
@@ -308,7 +309,8 @@ public class IfBlockASTBuilder implements ASTBuilder {
   }
 
   @Override
-  public ASTBuilder addASTBuilder(MinorOrEqualsComparatorASTBuilder newAST) throws BadTokenException {
+  public ASTBuilder addASTBuilder(MinorOrEqualsComparatorASTBuilder newAST)
+      throws BadTokenException {
     List<ASTBuilder> newChildren = new LinkedList<>(children);
     if (position >= children.size()) {
       newChildren.add(newAST);
@@ -327,17 +329,19 @@ public class IfBlockASTBuilder implements ASTBuilder {
 
   @Override
   public AST buildAST() throws ASTBuildException {
-    List<AST> astList =
-        children.stream()
-            .map(
-                astBuilder -> {
-                  try {
-                    return astBuilder.buildAST();
-                  } catch (ASTBuildException e) {
-                    throw new RuntimeException();
-                  }
-                })
-            .collect(Collectors.toList());
-    return new IfBlockAST(getValue(), astList);
+    return new IfBlockAST(getValue(), getASTList());
+  }
+
+  private List<AST> getASTList() {
+    return children.stream()
+        .map(
+            astBuilder -> {
+              try {
+                return astBuilder.buildAST();
+              } catch (ASTBuildException e) {
+                throw new RuntimeException();
+              }
+            })
+        .collect(Collectors.toList());
   }
 }
