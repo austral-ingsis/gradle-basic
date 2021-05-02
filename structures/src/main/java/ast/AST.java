@@ -1,5 +1,6 @@
 package ast;
 
+import ASTVisitor.ASTVisitor;
 import token.Token;
 
 public interface AST {
@@ -8,4 +9,6 @@ public interface AST {
   AST getRightChild();
 
   AST getLeftChild();
+
+  void accept(ASTVisitor visitor);
 }

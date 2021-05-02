@@ -1,4 +1,5 @@
 import ast.AST;
+import exceptions.ASTBuildException;
 import exceptions.BadTokenException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ public class ParserTest {
   private static String VARIABLE_KEYWORD = "let";
 
   @Test
-  public void testParser() throws BadTokenException {
+  public void testParser() throws BadTokenException, ASTBuildException {
     Parser parser = new Parser();
 
     List<Token> generatedTokens = new ArrayList<>();
@@ -42,7 +43,7 @@ public class ParserTest {
   }
 
   @Test
-  public void testParserComplexOperation() throws BadTokenException {
+  public void testParserComplexOperation() throws BadTokenException, ASTBuildException {
     Parser parser = new Parser();
 
     List<Token> generatedTokens = new ArrayList<>();
@@ -66,7 +67,7 @@ public class ParserTest {
   }
 
   @Test
-  public void testParser2() throws BadTokenException {
+  public void testParser2() throws BadTokenException, ASTBuildException {
     Parser parser = new Parser();
 
     List<Token> generatedTokens = new ArrayList<>();
@@ -121,6 +122,7 @@ public class ParserTest {
     generatedTokens.add(new Token(TokenType.NUMBER, "3"));
     generatedTokens.add(new Token(TokenType.PLUS_OPERATOR, "+"));
     generatedTokens.add(new Token(TokenType.NUMBER, "1"));
+    generatedTokens.add(new Token(TokenType.MINUS_OPERATOR, "-"));
     generatedTokens.add(new Token(TokenType.MINUS_OPERATOR, "-"));
     generatedTokens.add(new Token(TokenType.NUMBER, "2"));
 

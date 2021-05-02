@@ -1,15 +1,31 @@
+import ast.AST;
+import exceptions.ASTBuildException;
 import exceptions.BadTokenException;
+import java.util.List;
+import token.Token;
 
 public class Interpreter {
-  private final transient Lexer lexer;
-  private final transient Parser parser;
+
+  private transient Lexer lexer;
+  private transient Parser parser;
+  private transient InterpretASTVisitor interpretASTVisitor;
+  private transient ExecutionContext executionContext;
 
   public Interpreter() {
-    this.lexer = new PrintScriptLexer();
-    this.parser = new Parser();
+    lexer = new PrintScriptLexer();
+    parser = new Parser();
+    executionContext = new ExecutionContext();
+    interpretASTVisitor = new InterpretASTVisitor(executionContext);
   }
 
-  public void interpret(String statement, ExecutionMode executionMode) throws BadTokenException {
-    executionMode.execute(parser.parse(lexer.lex(statement)));
+  public void interpret(String statement) {
+    try {
+      List<Token> generatedTokens = lexer.lex(statement);
+      AST ast = parser.parse(generatedTokens);
+      ast.accept(interpretASTVisitor);
+      System.out.println(executionContext.getResult());
+    } catch (BadTokenException | ASTBuildException e) {
+      System.out.println(e.getMessage());
+    }
   }
 }

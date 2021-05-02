@@ -13,7 +13,7 @@ public class Token {
     return type;
   }
 
-  String getValue() {
+  public String getValue() {
     return value;
   }
 
