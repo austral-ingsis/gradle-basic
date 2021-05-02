@@ -309,8 +309,7 @@ public class ElseBlockASTBuilder implements ASTBuilder {
   }
 
   @Override
-  public ASTBuilder addASTBuilder(MinorOrEqualsComparatorASTBuilder newAST)
-      throws BadTokenException {
+  public ASTBuilder addASTBuilder(MinorOrEqualsComparatorASTBuilder newAST) throws BadTokenException {
     List<ASTBuilder> newChildren = new LinkedList<>(children);
     if (position >= children.size()) {
       newChildren.add(newAST);

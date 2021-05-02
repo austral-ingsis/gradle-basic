@@ -25,7 +25,12 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
           getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
           getRightChild());
     }
+<<<<<<< Updated upstream
     return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+=======
+    return new IfBodyASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+>>>>>>> Stashed changes
   }
 
   @Override
@@ -36,7 +41,12 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
           getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
           getRightChild());
     }
+<<<<<<< Updated upstream
     return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+=======
+    return new IfBodyASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+>>>>>>> Stashed changes
   }
 
   @Override
@@ -47,7 +57,12 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
           getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
           getRightChild());
     }
+<<<<<<< Updated upstream
     return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+=======
+    return new IfBodyASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+>>>>>>> Stashed changes
   }
 
   @Override
@@ -58,7 +73,12 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
           getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
           getRightChild());
     }
+<<<<<<< Updated upstream
     return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+=======
+    return new IfBodyASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+>>>>>>> Stashed changes
   }
 
   @Override
@@ -69,7 +89,12 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
           getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
           getRightChild());
     }
+<<<<<<< Updated upstream
     return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+=======
+    return new IfBodyASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+>>>>>>> Stashed changes
   }
 
   @Override
@@ -80,7 +105,12 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
           getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
           getRightChild());
     }
+<<<<<<< Updated upstream
     return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+=======
+    return new IfBodyASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+>>>>>>> Stashed changes
   }
 
   @Override
@@ -91,7 +121,12 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
           getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
           getRightChild());
     }
+<<<<<<< Updated upstream
     return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+=======
+    return new IfBodyASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+>>>>>>> Stashed changes
   }
 
   @Override
@@ -102,7 +137,12 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
           getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
           getRightChild());
     }
+<<<<<<< Updated upstream
     return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+=======
+    return new IfBodyASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+>>>>>>> Stashed changes
   }
 
   @Override
@@ -113,7 +153,12 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
           getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
           getRightChild());
     }
+<<<<<<< Updated upstream
     return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+=======
+    return new IfBodyASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+>>>>>>> Stashed changes
   }
 
   @Override
@@ -124,7 +169,12 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
           getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
           getRightChild());
     }
+<<<<<<< Updated upstream
     return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+=======
+    return new IfBodyASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+>>>>>>> Stashed changes
   }
 
   @Override
@@ -135,7 +185,12 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
           getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
           getRightChild());
     }
+<<<<<<< Updated upstream
     return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+=======
+    return new IfBodyASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+>>>>>>> Stashed changes
   }
 
   @Override
@@ -146,7 +201,12 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
           getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
           getRightChild());
     }
+<<<<<<< Updated upstream
     return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+=======
+    return new IfBodyASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+>>>>>>> Stashed changes
   }
 
   @Override
@@ -157,7 +217,12 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
           getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
           getRightChild());
     }
+<<<<<<< Updated upstream
     return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+=======
+    return new IfBodyASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+>>>>>>> Stashed changes
   }
 
   @Override
@@ -168,15 +233,30 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
           getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
           getRightChild());
     }
+<<<<<<< Updated upstream
     return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+=======
+    return new IfBodyASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+>>>>>>> Stashed changes
   }
 
   @Override
   public ASTBuilder addASTBuilder(ElseBlockASTBuilder newAST) throws BadTokenException {
     if (getRightChild() == null) {
+<<<<<<< Updated upstream
       return new IfBodyASTBuilder(getValue(), getLeftChild(), newAST);
     }
     return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+=======
+      return new IfBodyASTBuilder(
+          getValue(),
+          getLeftChild(),
+          newAST);
+    }
+    return new IfBodyASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+>>>>>>> Stashed changes
   }
 
   @Override
@@ -187,7 +267,12 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
           getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
           getRightChild());
     }
+<<<<<<< Updated upstream
     return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+=======
+    return new IfBodyASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+>>>>>>> Stashed changes
   }
 
   @Override
@@ -198,7 +283,12 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
           getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
           getRightChild());
     }
+<<<<<<< Updated upstream
     return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+=======
+    return new IfBodyASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+>>>>>>> Stashed changes
   }
 
   @Override
@@ -209,7 +299,12 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
           getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
           getRightChild());
     }
+<<<<<<< Updated upstream
     return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+=======
+    return new IfBodyASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+>>>>>>> Stashed changes
   }
 
   @Override
@@ -221,7 +316,12 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
           getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
           getRightChild());
     }
+<<<<<<< Updated upstream
     return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+=======
+    return new IfBodyASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+>>>>>>> Stashed changes
   }
 
   @Override
@@ -232,7 +332,12 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
           getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
           getRightChild());
     }
+<<<<<<< Updated upstream
     return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+=======
+    return new IfBodyASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+>>>>>>> Stashed changes
   }
 
   @Override
@@ -240,6 +345,7 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
       throws BadTokenException {
     if (getRightChild() == null) {
       return new IfBodyASTBuilder(
+<<<<<<< Updated upstream
           getValue(),
           getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
           getRightChild());
@@ -262,11 +368,43 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
   public ASTBuilder addASTBuilder(LeftKeyASTBuilder newAST) throws BadTokenException {
     if (getRightChild() == null) {
       return new IfBodyASTBuilder(
+=======
+>>>>>>> Stashed changes
           getValue(),
           getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
           getRightChild());
     }
+<<<<<<< Updated upstream
     return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+=======
+    return new IfBodyASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(EscCharASTBuilder newAST)
+      throws BadTokenException {
+    if (getRightChild() == null) {
+      return new IfBodyASTBuilder(
+              getValue(),
+              getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
+              getRightChild());
+    }
+    return new IfBodyASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+>>>>>>> Stashed changes
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(LeftKeyASTBuilder newAST) throws BadTokenException {
+    if (getRightChild() == null) {
+      return new IfBodyASTBuilder(
+              getValue(),
+              getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
+              getRightChild());
+    }
+    return new IfBodyASTBuilder(
+            getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
   }
 
   @Override

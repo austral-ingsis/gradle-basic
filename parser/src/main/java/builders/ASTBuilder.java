@@ -104,11 +104,21 @@ public interface ASTBuilder {
     throw new BadTokenException();
   }
 
+<<<<<<< Updated upstream
   default ASTBuilder addASTBuilder(LeftKeyASTBuilder newAST) throws BadTokenException {
     throw new BadTokenException();
   }
 
   default ASTBuilder addASTBuilder(EscCharASTBuilder newAST) throws BadTokenException {
+=======
+  default ASTBuilder addASTBuilder(LeftKeyASTBuilder newAST)
+      throws BadTokenException {
+    throw new BadTokenException();
+  }
+
+  default ASTBuilder addASTBuilder(EscCharASTBuilder newAST)
+      throws BadTokenException {
+>>>>>>> Stashed changes
     throw new BadTokenException();
   }
 }

@@ -89,6 +89,36 @@ public class Parser {
         case IF_FUNCTION -> {
           return generateIfFunctionAST(currentASTBuilder);
         }
+        case BOOLEAN -> {
+          return generateBooleanAST(currentASTBuilder);
+        }
+        case BOOLEAN_TYPE -> {
+          return generateBooleanTypeAST(currentASTBuilder);
+        }
+        case ELSE_FUNCTION -> {
+          return generateElseBlockAST(currentASTBuilder);
+        }
+        case EQUALS_COMPARATOR -> {
+          return generateEqualsComparatorAST(currentASTBuilder);
+        }
+        case GREATER_COMPARATOR -> {
+          return generateGreaterComparatorAST(currentASTBuilder);
+        }
+        case GREATER_OR_EQUALS_COMPARATOR -> {
+          return generateGreaterOrEqualsComparatorAST(currentASTBuilder);
+        }
+        case MINOR_COMPARATOR -> {
+          return generateMinorComparatorAST(currentASTBuilder);
+        }
+        case MINOR_OR_EQUALS_COMPARATOR -> {
+          return generateMinorOrEqualsComparatorAST(currentASTBuilder);
+        }
+        case LEFT_KEY -> {
+          return generateLeftKeyAST(currentASTBuilder);
+        }
+        case ESC_CHAR -> {
+          return generateEscCharAST(currentASTBuilder);
+        }
       }
     } catch (BadTokenException e) {
       throw new BadTokenException(position);
@@ -183,6 +213,86 @@ public class Parser {
       return new IfFunctionASTBuilder(currentToken);
     } else {
       return currentASTBuilder.addASTBuilder(new IfFunctionASTBuilder(currentToken));
+    }
+  }
+
+  private ASTBuilder generateBooleanAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+    if (currentASTBuilder == null) {
+      throw new BadTokenException("First token cannot be a boolean");
+    } else {
+      return currentASTBuilder.addASTBuilder(new BooleanASTBuilder(currentToken));
+    }
+  }
+
+  private ASTBuilder generateBooleanTypeAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+    if (currentASTBuilder == null) {
+      throw new BadTokenException("First token cannot be a boolean type");
+    } else {
+      return currentASTBuilder.addASTBuilder(new BooleanTypeASTBuilder(currentToken));
+    }
+  }
+
+  private ASTBuilder generateElseBlockAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+    if (currentASTBuilder == null) {
+      throw new BadTokenException("First token cannot be an else");
+    } else {
+      return currentASTBuilder.addASTBuilder(new ElseBlockASTBuilder(currentToken));
+    }
+  }
+
+  private ASTBuilder generateEqualsComparatorAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+    if (currentASTBuilder == null) {
+      throw new BadTokenException("First token cannot be a comparator");
+    } else {
+      return currentASTBuilder.addASTBuilder(new EqualsComparatorASTBuilder(currentToken));
+    }
+  }
+
+  private ASTBuilder generateGreaterComparatorAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+    if (currentASTBuilder == null) {
+      throw new BadTokenException("First token cannot be a comparator");
+    } else {
+      return currentASTBuilder.addASTBuilder(new GreaterComparatorASTBuilder(currentToken));
+    }
+  }
+
+  private ASTBuilder generateGreaterOrEqualsComparatorAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+    if (currentASTBuilder == null) {
+      throw new BadTokenException("First token cannot be a comparator");
+    } else {
+      return currentASTBuilder.addASTBuilder(new GreaterOrEqualsComparatorASTBuilder(currentToken));
+    }
+  }
+
+  private ASTBuilder generateMinorComparatorAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+    if (currentASTBuilder == null) {
+      throw new BadTokenException("First token cannot be a comparator");
+    } else {
+      return currentASTBuilder.addASTBuilder(new MinorComparatorASTBuilder(currentToken));
+    }
+  }
+
+  private ASTBuilder generateMinorOrEqualsComparatorAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+    if (currentASTBuilder == null) {
+      throw new BadTokenException("First token cannot be a comparator");
+    } else {
+      return currentASTBuilder.addASTBuilder(new MinorOrEqualsComparatorASTBuilder(currentToken));
+    }
+  }
+
+  private ASTBuilder generateLeftKeyAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+    if (currentASTBuilder == null) {
+      throw new BadTokenException("First token cannot be a left key");
+    } else {
+      return currentASTBuilder.addASTBuilder(new LeftKeyASTBuilder(currentToken));
+    }
+  }
+
+  private ASTBuilder generateEscCharAST(ASTBuilder currentASTBuilder) throws BadTokenException {
+    if (currentASTBuilder == null) {
+      throw new BadTokenException("First token cannot be an escape character");
+    } else {
+      return currentASTBuilder.addASTBuilder(new EscCharASTBuilder(currentToken));
     }
   }
 }

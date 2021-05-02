@@ -50,14 +50,20 @@ public class IdentifierASTBuilder extends AbstractASTBuilder {
   @Override
   public ASTBuilder addASTBuilder(EqualsComparatorASTBuilder newAST) throws BadTokenException {
     return new EqualsComparatorASTBuilder(
+<<<<<<< Updated upstream
         newAST.getValue(),
         newAST.getLeftChild() == null ? this : newAST.getLeftChild().addASTBuilder(this),
         newAST.getRightChild());
+=======
+            newAST.getValue(),
+            newAST.getLeftChild() == null ? this : newAST.getLeftChild().addASTBuilder(this), newAST.getRightChild());
+>>>>>>> Stashed changes
   }
 
   @Override
   public ASTBuilder addASTBuilder(GreaterComparatorASTBuilder newAST) throws BadTokenException {
     return new GreaterComparatorASTBuilder(
+<<<<<<< Updated upstream
         newAST.getValue(),
         newAST.getLeftChild() == null ? this : newAST.getLeftChild().addASTBuilder(this),
         newAST.getRightChild());
@@ -70,11 +76,23 @@ public class IdentifierASTBuilder extends AbstractASTBuilder {
         newAST.getValue(),
         newAST.getLeftChild() == null ? this : newAST.getLeftChild().addASTBuilder(this),
         newAST.getRightChild());
+=======
+            newAST.getValue(),
+            newAST.getLeftChild() == null ? this : newAST.getLeftChild().addASTBuilder(this), newAST.getRightChild());
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(GreaterOrEqualsComparatorASTBuilder newAST) throws BadTokenException {
+    return new GreaterOrEqualsComparatorASTBuilder(
+            newAST.getValue(),
+            newAST.getLeftChild() == null ? this : newAST.getLeftChild().addASTBuilder(this), newAST.getRightChild());
+>>>>>>> Stashed changes
   }
 
   @Override
   public ASTBuilder addASTBuilder(MinorComparatorASTBuilder newAST) throws BadTokenException {
     return new MinorComparatorASTBuilder(
+<<<<<<< Updated upstream
         newAST.getValue(),
         newAST.getLeftChild() == null ? this : newAST.getLeftChild().addASTBuilder(this),
         newAST.getRightChild());
@@ -87,6 +105,17 @@ public class IdentifierASTBuilder extends AbstractASTBuilder {
         newAST.getValue(),
         newAST.getLeftChild() == null ? this : newAST.getLeftChild().addASTBuilder(this),
         newAST.getRightChild());
+=======
+            newAST.getValue(),
+            newAST.getLeftChild() == null ? this : newAST.getLeftChild().addASTBuilder(this), newAST.getRightChild());
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(MinorOrEqualsComparatorASTBuilder newAST) throws BadTokenException {
+    return new MinorOrEqualsComparatorASTBuilder(
+            newAST.getValue(),
+            newAST.getLeftChild() == null ? this : newAST.getLeftChild().addASTBuilder(this), newAST.getRightChild());
+>>>>>>> Stashed changes
   }
 
   @Override
@@ -94,6 +123,10 @@ public class IdentifierASTBuilder extends AbstractASTBuilder {
     return this;
   }
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
   @Override
   public AST buildAST() throws ASTBuildException {
     return new IdentifierAST(
