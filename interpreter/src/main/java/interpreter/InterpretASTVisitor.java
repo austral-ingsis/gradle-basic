@@ -1,3 +1,5 @@
+package interpreter;
+
 import ASTVisitor.ASTVisitor;
 import ast.*;
 

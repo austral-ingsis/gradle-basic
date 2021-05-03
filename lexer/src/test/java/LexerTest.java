@@ -1,5 +1,7 @@
 import exceptions.BadTokenException;
 import java.util.List;
+import lexer.Lexer;
+import lexer.PrintScriptLexer;
 import org.junit.jupiter.api.*;
 import token.Token;
 import token.TokenType;
