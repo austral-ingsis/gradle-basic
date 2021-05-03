@@ -4,11 +4,11 @@ import ast.AST;
 import exceptions.ASTBuildException;
 import exceptions.BadTokenException;
 import java.util.List;
+import java.util.function.Consumer;
 import lexer.Lexer;
 import lexer.PrintScriptLexer;
 import parser.Parser;
 import token.Token;
-import utils.Printer;
 
 public class Interpreter {
 
@@ -17,10 +17,10 @@ public class Interpreter {
   private transient InterpretASTVisitor interpretASTVisitor;
   private transient ExecutionContext executionContext;
 
-  public Interpreter(Printer printer) {
+  public Interpreter(Consumer<String> lines) {
     lexer = new PrintScriptLexer();
     parser = new Parser();
-    executionContext = new ExecutionContext(printer);
+    executionContext = new ExecutionContext(lines);
     interpretASTVisitor = new InterpretASTVisitor(executionContext);
   }
 
