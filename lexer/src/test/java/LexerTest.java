@@ -1,5 +1,12 @@
 import exceptions.BadTokenException;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
 import lexer.Lexer;
 import lexer.PrintScriptLexer;
 import org.junit.jupiter.api.*;
@@ -51,4 +58,18 @@ public class LexerTest {
     Assertions.assertEquals(
         1, tokens.stream().filter(token -> token.getType() == TokenType.ESC_CHAR).count());
   }
+
+  @Test
+  public void statement_1() throws BadTokenException, FileNotFoundException {
+    Lexer lexer = new PrintScriptLexer();
+    String codeDirectory = Utils.getCodeDirectory("statement_1");
+    String outputDirectory = Utils.getOutputDirectory("statement_1");
+
+    String code = Utils.getCode(codeDirectory);
+    List<Token> resultTokens = lexer.lex(code);
+
+    Assertions.assertEquals(Utils.getTokensAsString(resultTokens), Utils.getOutput(outputDirectory));
+  }
+
+
 }

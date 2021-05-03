@@ -1,0 +1,7 @@
+VARIABLE_KEYWORD: let
+IDENTIFIER: x
+COLON: :
+STRING_TYPE: string
+EQUALS: =
+STRING: Hello world
+ESC_CHAR: ;
