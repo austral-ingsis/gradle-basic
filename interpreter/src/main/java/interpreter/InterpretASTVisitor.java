@@ -151,4 +151,10 @@ public class InterpretASTVisitor implements ASTVisitor {
 
   @Override
   public void visitBooleanTypeAST(BooleanTypeAST booleanTypeAST) {}
+
+  @Override
+  public void visitFunctionNameAST(FunctionNameAST functionNameAST) {
+    functionNameAST.getChild().accept(this);
+    executionContext.printLine();
+  }
 }

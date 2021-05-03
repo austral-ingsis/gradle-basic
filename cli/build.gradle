@@ -1,0 +1,8 @@
+plugins {
+    id 'my-library.java-common-conventions'
+}
+
+dependencies {
+    implementation project(':interpreter')
+    implementation project(':utils')
+}

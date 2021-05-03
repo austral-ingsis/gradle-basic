@@ -121,6 +121,9 @@ public class Parser {
         case ESC_CHAR -> {
           return generateEscCharAST(currentASTBuilder);
         }
+        case FUNCTION_NAME -> {
+          return generateFunctionNameAST(currentASTBuilder);
+        }
       }
     } catch (BadTokenException e) {
       throw new BadTokenException(position);
@@ -300,6 +303,15 @@ public class Parser {
       throw new BadTokenException("First token cannot be an escape character");
     } else {
       return currentASTBuilder.addASTBuilder(new EscCharASTBuilder(currentToken));
+    }
+  }
+
+  private ASTBuilder generateFunctionNameAST(ASTBuilder currentASTBuilder)
+      throws BadTokenException {
+    if (currentASTBuilder == null) {
+      return new FunctionNameASTBuilder(currentToken);
+    } else {
+      return currentASTBuilder.addASTBuilder(new FunctionNameASTBuilder(currentToken));
     }
   }
 }

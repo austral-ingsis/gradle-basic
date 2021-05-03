@@ -111,4 +111,8 @@ public interface ASTBuilder {
   default ASTBuilder addASTBuilder(EscCharASTBuilder newAST) throws BadTokenException {
     throw new BadTokenException();
   }
+
+  default ASTBuilder addASTBuilder(FunctionNameASTBuilder newAST) throws BadTokenException {
+    throw new BadTokenException();
+  }
 }

@@ -22,7 +22,7 @@ public class IdentifierTokenHandler implements TokenHandler {
           add("boolean");
           add("if");
           add("else");
-          add("printLn");
+          add("println");
         }
       };
 
