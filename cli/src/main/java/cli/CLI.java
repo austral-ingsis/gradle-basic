@@ -4,13 +4,13 @@ import interpreter.Interpreter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-import utils.Printer;
+import java.util.function.Consumer;
 
 @SuppressWarnings("PMD")
 public class CLI {
 
-  public void interpret(File src, Printer printer) {
-    Interpreter interpreter = new Interpreter(printer);
+  public void interpret(File src, Consumer<String> lines) {
+    Interpreter interpreter = new Interpreter(lines);
     try {
       Scanner scanner = new Scanner(src);
       while (scanner.hasNextLine()) {
