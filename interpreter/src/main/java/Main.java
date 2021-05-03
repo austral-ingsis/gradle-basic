@@ -7,11 +7,13 @@ import lexer.Lexer;
 import lexer.PrintScriptLexer;
 import parser.Parser;
 import token.Token;
+import utils.Printer;
 
 public class Main {
   static Lexer lexer = new PrintScriptLexer();
   static Parser parser = new Parser();
-  static Interpreter interpreter = new Interpreter();
+  static Printer printer = new Printer();
+  static Interpreter interpreter = new Interpreter(printer);
 
   public static void main(String[] args) {
     //    String badLine1 = "let a: number = 5*3**+1;";
@@ -36,13 +38,14 @@ public class Main {
     //    strings.add(goodLine4);
     //
     //    strings.forEach(Main::interpret);
-    //    interpreter.interpret("let a: number = 5;");
-    //    interpreter.interpret("let b: number = 15;");
-    //    interpreter.interpret("let c: number = 3;");
-    //    interpreter.interpret("c = 100;");
-    //    interpreter.interpret("a * b + c / a - b;");
-    interpreter.interpret(
-        "if (100 < 200) {let a: number = 3; let b: number = 4; a + b;} else {5 + 100}");
+    interpreter.interpret("let a: number = 5;");
+    interpreter.interpret("let b: number = 15;");
+    interpreter.interpret("let c: number = 3;");
+    interpreter.interpret("c = 100;");
+    interpreter.interpret("println(a * b + c / a - b);");
+    printer.getLines().forEach(System.out::println);
+    //        interpreter.interpret("if (100 < 200) {let a: number = 3; let b: number = 4; a + b;}
+    // else {5 + 100}");
     //    interpreter.interpret("" +
     //            "if (100 < 200) " +
     //            "{if(2>1) " +

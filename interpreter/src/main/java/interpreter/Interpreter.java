@@ -8,6 +8,7 @@ import lexer.Lexer;
 import lexer.PrintScriptLexer;
 import parser.Parser;
 import token.Token;
+import utils.Printer;
 
 public class Interpreter {
 
@@ -16,10 +17,10 @@ public class Interpreter {
   private transient InterpretASTVisitor interpretASTVisitor;
   private transient ExecutionContext executionContext;
 
-  public Interpreter() {
+  public Interpreter(Printer printer) {
     lexer = new PrintScriptLexer();
     parser = new Parser();
-    executionContext = new ExecutionContext();
+    executionContext = new ExecutionContext(printer);
     interpretASTVisitor = new InterpretASTVisitor(executionContext);
   }
 
@@ -28,7 +29,6 @@ public class Interpreter {
       List<Token> generatedTokens = lexer.lex(statement);
       AST ast = parser.parse(generatedTokens);
       ast.accept(interpretASTVisitor);
-      System.out.println(executionContext.getResult());
     } catch (BadTokenException | ASTBuildException e) {
       System.out.println(e.getMessage());
     }

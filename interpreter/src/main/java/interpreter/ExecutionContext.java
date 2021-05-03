@@ -2,10 +2,12 @@ package interpreter;
 
 import java.util.HashMap;
 import java.util.Map;
+import utils.Printer;
 
 public class ExecutionContext {
 
   private final transient Map<String, String> variables;
+  private final transient Printer printer;
 
   private String temporalIdentifier;
 
@@ -13,8 +15,9 @@ public class ExecutionContext {
 
   private boolean conditionalResult;
 
-  public ExecutionContext() {
+  public ExecutionContext(Printer printer) {
     this.variables = new HashMap<>();
+    this.printer = printer;
   }
 
   public int sum(int a, int b) {
@@ -87,5 +90,9 @@ public class ExecutionContext {
 
   public void setConditionalResult(boolean conditionalResult) {
     this.conditionalResult = conditionalResult;
+  }
+
+  public void printLine() {
+    printer.print(String.valueOf(getResult()));
   }
 }
