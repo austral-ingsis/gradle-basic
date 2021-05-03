@@ -1,3 +1,5 @@
+package lexer;
+
 import exceptions.BadTokenException;
 import java.util.List;
 import token.Token;

@@ -1,3 +1,5 @@
+package lexer;
+
 import exceptions.BadTokenException;
 import handler.*;
 import java.util.*;

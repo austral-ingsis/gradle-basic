@@ -1,4 +1,4 @@
-// PROGRAM ::= { STATEMENT_LIST }
+package parser; // PROGRAM ::= { STATEMENT_LIST }
 // STATEMENT_LIST ::= [[ STATEMENT ; ]]*
 // STATEMENT :: =    VARIABLE_KEYWORD IDENTIFIER: DATA_TYPE
 //               |  IDENTIFIER = EXPRESSION
@@ -30,7 +30,7 @@ public class Parser {
   private static final String FIRST_TOKEN_OPERATOR_ERROR = "First token cannot be an operator";
   private static final String FIRST_TOKEN_COMPARATOR_ERROR = "First token cannot be a comparator";
 
-  AST parse(List<Token> tokens) throws BadTokenException, ASTBuildException {
+  public AST parse(List<Token> tokens) throws BadTokenException, ASTBuildException {
     this.tokens = tokens;
     ASTBuilder currentASTBuilder = null;
     position = 0;
