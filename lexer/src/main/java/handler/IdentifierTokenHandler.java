@@ -17,6 +17,7 @@ public class IdentifierTokenHandler implements TokenHandler {
           add("true");
           add("false");
           add("let");
+          add("const");
           add("number");
           add("string");
           add("boolean");

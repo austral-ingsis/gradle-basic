@@ -36,11 +36,19 @@ public class Main {
     //    strings.add(goodLine4);
     //
     //    strings.forEach(Main::interpret);
-    interpreter.interpret("let a: number = 5;");
-    interpreter.interpret("let b: number = 15;");
-    interpreter.interpret("let c: number = 3;");
-    interpreter.interpret("c = 100;");
-    interpreter.interpret("println(a * b + c / a - b);");
+    //    interpreter.interpret("let a: number = 5;");
+    //    interpreter.interpret("let b: number = 15;");
+    //    interpreter.interpret("let c: number = 3;");
+    //    interpreter.interpret("c = 100;");
+    //    interpreter.interpret("println(a * b + c / a - b);");
+    interpreter.interpret("const booleanResult: boolean = 5 <= 3;");
+    interpreter.interpret(
+        "if(booleanResult) {\n"
+            + "}\n"
+            + "else {\n"
+            + "    println(\"else statement working correctly\");\n"
+            + "}");
+    interpreter.interpret("println(\"outside of conditional\");");
     //        interpreter.interpret("if (100 < 200) {let a: number = 3; let b: number = 4; a + b;}
     // else {5 + 100}");
     //    interpreter.interpret("" +

@@ -339,6 +339,19 @@ public class ElseBlockASTBuilder implements ASTBuilder {
   }
 
   @Override
+  public ASTBuilder addASTBuilder(FunctionNameASTBuilder newAST) throws BadTokenException {
+    List<ASTBuilder> newChildren = new LinkedList<>(children);
+    if (position >= children.size()) {
+      newChildren.add(newAST);
+      return new ElseBlockASTBuilder(getValue(), newChildren, position);
+    }
+    ASTBuilder lastBuilder = newChildren.get(position);
+    ASTBuilder builderToAdd = lastBuilder.addASTBuilder(newAST);
+    newChildren.set(position, builderToAdd);
+    return new ElseBlockASTBuilder(getValue(), newChildren, position);
+  }
+
+  @Override
   public ASTBuilder addASTBuilder(EscCharASTBuilder newAST) throws BadTokenException {
     return new ElseBlockASTBuilder(value, children, position + 1);
   }

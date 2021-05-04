@@ -1,20 +1,4 @@
-package parser; // PROGRAM ::= { STATEMENT_LIST }
-// STATEMENT_LIST ::= [[ STATEMENT ; ]]*
-// STATEMENT :: =    VARIABLE_KEYWORD IDENTIFIER: DATA_TYPE
-//               |  IDENTIFIER = EXPRESSION
-//               |  println EXPRESSION
-// DATA_TYPE ::= number | string
-// EXPRESSION ::=  IDENTIFIER | NUMERAL | STRING | ( EXPRESSION OPERATOR EXPRESSION )
-
-// VARIABLE_KEYWORD ::= let
-// IDENTIFIER ::=  LETTER [[ LETTER | DIGIT ]]*
-// NUMERAL ::=  DIGIT [[ DIGIT ]]*
-// OPERATOR ::= + | - | / | *
-// LETTER ::= A | B | C | ... | Z
-// DIGIT ::= 0 | 1 | ... | 9
-// STRING ::= "[[ CHARACTER ]]*" | '[[ CHARACTER ]]*'
-
-// http://people.cs.ksu.edu/~schmidt/300s05/Lectures/GrammarNotes/compiler.html
+package parser;
 
 import ast.*;
 import builders.*;

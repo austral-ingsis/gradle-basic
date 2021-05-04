@@ -270,7 +270,21 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
   }
 
   @Override
+  public ASTBuilder addASTBuilder(FunctionNameASTBuilder newAST) throws BadTokenException {
+    if (getRightChild() == null) {
+      return new IfBodyASTBuilder(
+          getValue(),
+          getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
+          getRightChild());
+    }
+    return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+  }
+
+  @Override
   public AST buildAST() throws ASTBuildException {
-    return new IfBodyAST(getValue(), getLeftChild().buildAST(), getRightChild().buildAST());
+    return new IfBodyAST(
+        getValue(),
+        getLeftChild() == null ? null : getLeftChild().buildAST(),
+        getRightChild() == null ? null : getRightChild().buildAST());
   }
 }
