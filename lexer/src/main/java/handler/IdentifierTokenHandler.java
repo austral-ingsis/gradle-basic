@@ -17,12 +17,13 @@ public class IdentifierTokenHandler implements TokenHandler {
           add("true");
           add("false");
           add("let");
+          add("const");
           add("number");
           add("string");
           add("boolean");
           add("if");
           add("else");
-          add("printLn");
+          add("println");
         }
       };
 

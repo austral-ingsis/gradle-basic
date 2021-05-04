@@ -40,4 +40,12 @@ public interface ASTVisitor {
   void visitMinorOrEqualsComparatorAST(MinorOrEqualsComparatorAST minorOrEqualsComparatorAST);
 
   void visitBooleanTypeAST(BooleanTypeAST booleanTypeAST);
+
+  void visitFunctionNameAST(FunctionNameAST functionNameAST);
+
+  void visitConstantKeywordAST(ConstantKeywordAST constantKeywordAST);
+
+  void visitVariableKeywordAST(VariableKeywordAST variableKeywordAST);
+
+  void visitBooleanAST(BooleanAST booleanAST);
 }

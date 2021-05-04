@@ -8,7 +8,7 @@ import stream.CharacterStream;
 import token.Token;
 import token.TokenType;
 
-public class PrintScriptLexer implements Lexer {
+public class PrintScriptLexer2 implements Lexer {
   private static final List<TokenHandler> handlers =
       new LinkedList<>() {
         {
@@ -18,6 +18,7 @@ public class PrintScriptLexer implements Lexer {
           push(new StringTypeTokenHandler());
           push(new NumberTypeTokenHandler());
           push(new VariableKeywordTokenHandler());
+          push(new ConstantKeywordTokenHandler());
           push(new IfTokenHandler());
           push(new ElseTokenHandler());
           push(new StringTokenHandler());

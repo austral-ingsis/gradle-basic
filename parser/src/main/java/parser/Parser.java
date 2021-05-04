@@ -1,20 +1,4 @@
-package parser; // PROGRAM ::= { STATEMENT_LIST }
-// STATEMENT_LIST ::= [[ STATEMENT ; ]]*
-// STATEMENT :: =    VARIABLE_KEYWORD IDENTIFIER: DATA_TYPE
-//               |  IDENTIFIER = EXPRESSION
-//               |  println EXPRESSION
-// DATA_TYPE ::= number | string
-// EXPRESSION ::=  IDENTIFIER | NUMERAL | STRING | ( EXPRESSION OPERATOR EXPRESSION )
-
-// VARIABLE_KEYWORD ::= let
-// IDENTIFIER ::=  LETTER [[ LETTER | DIGIT ]]*
-// NUMERAL ::=  DIGIT [[ DIGIT ]]*
-// OPERATOR ::= + | - | / | *
-// LETTER ::= A | B | C | ... | Z
-// DIGIT ::= 0 | 1 | ... | 9
-// STRING ::= "[[ CHARACTER ]]*" | '[[ CHARACTER ]]*'
-
-// http://people.cs.ksu.edu/~schmidt/300s05/Lectures/GrammarNotes/compiler.html
+package parser;
 
 import ast.*;
 import builders.*;
@@ -120,6 +104,15 @@ public class Parser {
         }
         case ESC_CHAR -> {
           return generateEscCharAST(currentASTBuilder);
+        }
+        case FUNCTION_NAME -> {
+          return generateFunctionNameAST(currentASTBuilder);
+        }
+        case CONSTANT_KEYWORD -> {
+          return generateConstantKeywordAST(currentASTBuilder);
+        }
+        case VARIABLE_KEYWORD -> {
+          return generateVariableKeywordAST(currentASTBuilder);
         }
       }
     } catch (BadTokenException e) {
@@ -300,6 +293,33 @@ public class Parser {
       throw new BadTokenException("First token cannot be an escape character");
     } else {
       return currentASTBuilder.addASTBuilder(new EscCharASTBuilder(currentToken));
+    }
+  }
+
+  private ASTBuilder generateConstantKeywordAST(ASTBuilder currentASTBuilder)
+      throws BadTokenException {
+    if (currentASTBuilder == null) {
+      return new ConstantKeywordASTBuilder(currentToken);
+    } else {
+      return currentASTBuilder.addASTBuilder(new ConstantKeywordASTBuilder(currentToken));
+    }
+  }
+
+  private ASTBuilder generateVariableKeywordAST(ASTBuilder currentASTBuilder)
+      throws BadTokenException {
+    if (currentASTBuilder == null) {
+      return new VariableKeywordASTBuilder(currentToken);
+    } else {
+      return currentASTBuilder.addASTBuilder(new VariableKeywordASTBuilder(currentToken));
+    }
+  }
+
+  private ASTBuilder generateFunctionNameAST(ASTBuilder currentASTBuilder)
+      throws BadTokenException {
+    if (currentASTBuilder == null) {
+      return new FunctionNameASTBuilder(currentToken);
+    } else {
+      return currentASTBuilder.addASTBuilder(new FunctionNameASTBuilder(currentToken));
     }
   }
 }

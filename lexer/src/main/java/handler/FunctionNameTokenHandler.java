@@ -6,7 +6,7 @@ import token.Token;
 import token.TokenType;
 
 public class FunctionNameTokenHandler implements TokenHandler {
-  private static final String FUNCTION_NAME = "printLn";
+  private static final String FUNCTION_NAME = "println";
 
   @Override
   public Optional<Token> handle(CharacterStream statement) {
