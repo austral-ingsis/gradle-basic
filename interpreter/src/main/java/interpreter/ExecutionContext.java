@@ -6,58 +6,67 @@ import java.util.function.Consumer;
 
 public class ExecutionContext {
 
+  private enum ResultMode {
+    DOUBLE_MODE,
+    STRING_MODE
+  }
+
   private final transient Map<String, String> variables;
   private final transient Consumer<String> lines;
+  private transient ResultMode resultMode;
 
   private String temporalIdentifier;
 
-  private int result;
-
+  private String result;
   private boolean conditionalResult;
 
   public ExecutionContext(Consumer<String> lines) {
+    this.resultMode = ResultMode.DOUBLE_MODE;
+    this.result = "";
     this.variables = new HashMap<>();
     this.lines = lines;
   }
 
-  public int sum(int a, int b) {
-    result = a + b;
-    return a;
+  public void sum(String a, String b) {
+    switch (resultMode) {
+      case STRING_MODE -> result = a + b;
+      case DOUBLE_MODE -> result = String.valueOf(Double.parseDouble(a) + Double.parseDouble(b));
+    }
   }
 
-  public int mult(int a, int b) {
-    result = a * b;
-    return a;
+  public void mult(String a, String b) {
+    if (resultMode == ResultMode.STRING_MODE) throw new UnsupportedOperationException();
+    result = String.valueOf(Double.parseDouble(a) * Double.parseDouble(b));
   }
 
-  public int div(int a, int b) {
-    result = a / b;
-    return a;
+  public void div(String a, String b) {
+    if (resultMode == ResultMode.STRING_MODE) throw new UnsupportedOperationException();
+    result = String.valueOf(Double.parseDouble(a) / Double.parseDouble(b));
   }
 
-  public int min(int a, int b) {
-    result = a - b;
-    return a;
+  public void min(String a, String b) {
+    if (resultMode == ResultMode.STRING_MODE) throw new UnsupportedOperationException();
+    result = String.valueOf(Double.parseDouble(a) - Double.parseDouble(b));
   }
 
-  public boolean isEqual(int a, int b) {
-    return a == b;
+  public boolean isEqual(String a, String b) {
+    return Double.parseDouble(a) == Double.parseDouble(b);
   }
 
-  public boolean isGreater(int a, int b) {
-    return a > b;
+  public boolean isGreater(String a, String b) {
+    return Double.parseDouble(a) > Double.parseDouble(b);
   }
 
-  public boolean isGreaterOrEqual(int a, int b) {
-    return a >= b;
+  public boolean isGreaterOrEqual(String a, String b) {
+    return Double.parseDouble(a) >= Double.parseDouble(b);
   }
 
-  public boolean isMinor(int a, int b) {
-    return a < b;
+  public boolean isMinor(String a, String b) {
+    return Double.parseDouble(a) < Double.parseDouble(b);
   }
 
-  public boolean isMinorOrEqual(int a, int b) {
-    return a <= b;
+  public boolean isMinorOrEqual(String a, String b) {
+    return Double.parseDouble(a) <= Double.parseDouble(b);
   }
 
   public String getVariableValue(String variable) {
@@ -68,11 +77,11 @@ public class ExecutionContext {
     variables.put(variable, value);
   }
 
-  public int getResult() {
+  public String getResult() {
     return result;
   }
 
-  public void setResult(int result) {
+  public void setResult(String result) {
     this.result = result;
   }
 
@@ -92,7 +101,24 @@ public class ExecutionContext {
     this.conditionalResult = conditionalResult;
   }
 
+  public void setStringResult(String value) {
+    this.result = value;
+    resultMode = ResultMode.STRING_MODE;
+  }
+
   public void printLine() {
-    lines.accept(String.valueOf(getResult()));
+    switch (resultMode) {
+      case DOUBLE_MODE -> {
+        double resultDouble = Double.parseDouble(result);
+        if ((resultDouble == Math.floor(resultDouble)) && !Double.isInfinite(resultDouble)) {
+          lines.accept(String.valueOf((int) resultDouble));
+        } else {
+          lines.accept(result);
+        }
+        result = "";
+      }
+      case STRING_MODE -> lines.accept(result);
+    }
+    this.resultMode = ResultMode.DOUBLE_MODE;
   }
 }
