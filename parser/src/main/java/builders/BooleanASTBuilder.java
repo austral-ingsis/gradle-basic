@@ -1,7 +1,7 @@
 package builders;
 
 import ast.AST;
-import ast.AssignationAST;
+import ast.BooleanAST;
 import exceptions.ASTBuildException;
 import exceptions.BadTokenException;
 import token.Token;
@@ -31,7 +31,7 @@ public class BooleanASTBuilder extends AbstractASTBuilder {
 
   @Override
   public AST buildAST() throws ASTBuildException {
-    return new AssignationAST(
+    return new BooleanAST(
         getValue(),
         getLeftChild() == null ? null : getLeftChild().buildAST(),
         getRightChild() == null ? null : getRightChild().buildAST());

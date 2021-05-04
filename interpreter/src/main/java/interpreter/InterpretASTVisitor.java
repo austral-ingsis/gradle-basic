@@ -2,6 +2,8 @@ package interpreter;
 
 import ASTVisitor.ASTVisitor;
 import ast.*;
+import token.Token;
+import token.TokenType;
 
 public class InterpretASTVisitor implements ASTVisitor {
   private final transient ExecutionContext executionContext;
@@ -52,21 +54,33 @@ public class InterpretASTVisitor implements ASTVisitor {
     String left = executionContext.getTemporalIdentifier();
     assignationAST.getRightChild().accept(this);
     String right = executionContext.getResult();
-    executionContext.addVariable(left, String.valueOf(right));
+    executionContext.addIdentifier(left, String.valueOf(right));
   }
 
   @Override
-  public void visitNumberTypeAST(NumberTypeAST numberTypeAST) {}
+  public void visitNumberTypeAST(NumberTypeAST numberTypeAST) {
+    executionContext.setCreationTypeToNumber();
+  }
 
   @Override
-  public void visitStringTypeAST(StringTypeAST stringTypeAST) {}
+  public void visitStringTypeAST(StringTypeAST stringTypeAST) {
+    executionContext.setCreationTypeToString();
+  }
+
+  @Override
+  public void visitBooleanTypeAST(BooleanTypeAST booleanTypeAST) {
+    executionContext.setCreationTypeToBoolean();
+  }
 
   @Override
   public void visitIdentifierAST(IdentifierAST identifierAST) {
     String identifier = identifierAST.getValue().getValue();
-    String possibleValue = executionContext.getVariableValue(identifier);
+    String possibleValue = executionContext.getIdentifierValue(identifier);
     if (possibleValue == null) executionContext.setTemporalIdentifier(identifier);
-    else executionContext.setResult(possibleValue);
+    else {
+      executionContext.setResultModeFromIdentifier(identifier);
+      executionContext.setResult(possibleValue);
+    }
   }
 
   @Override
@@ -85,6 +99,11 @@ public class InterpretASTVisitor implements ASTVisitor {
   }
 
   @Override
+  public void visitBooleanAST(BooleanAST booleanAST) {
+    executionContext.setBooleanResult(booleanAST.getValue().getValue());
+  }
+
+  @Override
   public void visitIfBodyAST(IfBodyAST ifBodyAST) {
     boolean conditional = executionContext.getConditionalResult();
     if (conditional && ifBodyAST.getLeftChild() != null) ifBodyAST.getLeftChild().accept(this);
@@ -93,6 +112,10 @@ public class InterpretASTVisitor implements ASTVisitor {
 
   @Override
   public void visitIfFunctionAST(IfFunctionAST ifFunctionAST) {
+    Token value = ifFunctionAST.getLeftChild().getValue();
+    if (value.getType() == TokenType.IDENTIFIER && !executionContext.isBoolean(value.getValue())) {
+      throw new UnsupportedOperationException();
+    }
     ifFunctionAST.getLeftChild().accept(this);
     ifFunctionAST.getRightChild().accept(this);
   }
@@ -150,11 +173,20 @@ public class InterpretASTVisitor implements ASTVisitor {
   }
 
   @Override
-  public void visitBooleanTypeAST(BooleanTypeAST booleanTypeAST) {}
-
-  @Override
   public void visitFunctionNameAST(FunctionNameAST functionNameAST) {
     functionNameAST.getChild().accept(this);
     executionContext.printLine();
+  }
+
+  @Override
+  public void visitConstantKeywordAST(ConstantKeywordAST constantKeywordAST) {
+    executionContext.constantCreationMode();
+    constantKeywordAST.getChild().accept(this);
+  }
+
+  @Override
+  public void visitVariableKeywordAST(VariableKeywordAST variableKeywordAST) {
+    executionContext.variableCreationMode();
+    variableKeywordAST.getChild().accept(this);
   }
 }

@@ -276,6 +276,24 @@ public class IfFunctionASTBuilder extends AbstractASTBuilder {
   }
 
   @Override
+  public ASTBuilder addASTBuilder(ConstantKeywordASTBuilder newAST) throws BadTokenException {
+    if (getRightChild() == null) {
+      throw new BadTokenException();
+    }
+    return new IfFunctionASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(VariableKeywordASTBuilder newAST) throws BadTokenException {
+    if (getRightChild() == null) {
+      throw new BadTokenException();
+    }
+    return new IfFunctionASTBuilder(
+        getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+  }
+
+  @Override
   public AST buildAST() throws ASTBuildException {
     return new IfFunctionAST(getValue(), getLeftChild().buildAST(), getRightChild().buildAST());
   }

@@ -357,6 +357,32 @@ public class ElseBlockASTBuilder implements ASTBuilder {
   }
 
   @Override
+  public ASTBuilder addASTBuilder(ConstantKeywordASTBuilder newAST) throws BadTokenException {
+    List<ASTBuilder> newChildren = new LinkedList<>(children);
+    if (position >= children.size()) {
+      newChildren.add(newAST);
+      return new ElseBlockASTBuilder(getValue(), newChildren, position);
+    }
+    ASTBuilder lastBuilder = newChildren.get(position);
+    ASTBuilder builderToAdd = lastBuilder.addASTBuilder(newAST);
+    newChildren.set(position, builderToAdd);
+    return new ElseBlockASTBuilder(getValue(), newChildren, position);
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(VariableKeywordASTBuilder newAST) throws BadTokenException {
+    List<ASTBuilder> newChildren = new LinkedList<>(children);
+    if (position >= children.size()) {
+      newChildren.add(newAST);
+      return new ElseBlockASTBuilder(getValue(), newChildren, position);
+    }
+    ASTBuilder lastBuilder = newChildren.get(position);
+    ASTBuilder builderToAdd = lastBuilder.addASTBuilder(newAST);
+    newChildren.set(position, builderToAdd);
+    return new ElseBlockASTBuilder(getValue(), newChildren, position);
+  }
+
+  @Override
   public AST buildAST() throws ASTBuildException {
     return new ElseBlockAST(getValue(), getASTList());
   }

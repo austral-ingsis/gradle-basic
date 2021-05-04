@@ -115,4 +115,12 @@ public interface ASTBuilder {
   default ASTBuilder addASTBuilder(FunctionNameASTBuilder newAST) throws BadTokenException {
     throw new BadTokenException();
   }
+
+  default ASTBuilder addASTBuilder(ConstantKeywordASTBuilder newAST) throws BadTokenException {
+    throw new BadTokenException();
+  }
+
+  default ASTBuilder addASTBuilder(VariableKeywordASTBuilder newAST) throws BadTokenException {
+    throw new BadTokenException();
+  }
 }

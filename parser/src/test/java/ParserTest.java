@@ -13,61 +13,6 @@ public class ParserTest {
   private static String VARIABLE_KEYWORD = "let";
 
   @Test
-  public void testParser() throws BadTokenException, ASTBuildException {
-    Parser parser = new Parser();
-
-    List<Token> generatedTokens = new ArrayList<>();
-    generatedTokens.add(new Token(TokenType.VARIABLE_KEYWORD, VARIABLE_KEYWORD));
-    generatedTokens.add(new Token(TokenType.IDENTIFIER, "a"));
-    generatedTokens.add(new Token(TokenType.COLON, ":"));
-    generatedTokens.add(new Token(TokenType.NUMBER_TYPE, "number"));
-    generatedTokens.add(new Token(TokenType.EQUALS, "="));
-    generatedTokens.add(new Token(TokenType.IDENTIFIER, "a"));
-    generatedTokens.add(new Token(TokenType.MULTIPLICATION_OPERATOR, "*"));
-    generatedTokens.add(new Token(TokenType.IDENTIFIER, "a"));
-    generatedTokens.add(new Token(TokenType.ESC_CHAR, ";"));
-
-    AST ast = parser.parse(generatedTokens);
-
-    Assertions.assertEquals(TokenType.EQUALS, ast.getValue().getType());
-    Assertions.assertEquals(TokenType.COLON, ast.getLeftChild().getValue().getType());
-    Assertions.assertEquals(
-        TokenType.MULTIPLICATION_OPERATOR, ast.getRightChild().getValue().getType());
-    Assertions.assertEquals(
-        TokenType.IDENTIFIER, ast.getLeftChild().getLeftChild().getValue().getType());
-    Assertions.assertEquals(
-        TokenType.NUMBER_TYPE, ast.getLeftChild().getRightChild().getValue().getType());
-    Assertions.assertEquals(
-        TokenType.IDENTIFIER, ast.getRightChild().getLeftChild().getValue().getType());
-    Assertions.assertEquals(
-        TokenType.IDENTIFIER, ast.getRightChild().getRightChild().getValue().getType());
-  }
-
-  @Test
-  public void testParserComplexOperation() throws BadTokenException, ASTBuildException {
-    Parser parser = new Parser();
-
-    List<Token> generatedTokens = new ArrayList<>();
-    generatedTokens.add(new Token(TokenType.VARIABLE_KEYWORD, VARIABLE_KEYWORD));
-    generatedTokens.add(new Token(TokenType.IDENTIFIER, "a"));
-    generatedTokens.add(new Token(TokenType.COLON, ":"));
-    generatedTokens.add(new Token(TokenType.STRING_TYPE, "string"));
-    generatedTokens.add(new Token(TokenType.EQUALS, "="));
-    generatedTokens.add(new Token(TokenType.STRING, "\"my string\""));
-    generatedTokens.add(new Token(TokenType.ESC_CHAR, ";"));
-
-    AST ast = parser.parse(generatedTokens);
-
-    Assertions.assertEquals(TokenType.EQUALS, ast.getValue().getType());
-    Assertions.assertEquals(TokenType.COLON, ast.getLeftChild().getValue().getType());
-    Assertions.assertEquals(TokenType.STRING, ast.getRightChild().getValue().getType());
-    Assertions.assertEquals(
-        TokenType.IDENTIFIER, ast.getLeftChild().getLeftChild().getValue().getType());
-    Assertions.assertEquals(
-        TokenType.STRING_TYPE, ast.getLeftChild().getRightChild().getValue().getType());
-  }
-
-  @Test
   public void testParser2() throws BadTokenException, ASTBuildException {
     Parser parser = new Parser();
 

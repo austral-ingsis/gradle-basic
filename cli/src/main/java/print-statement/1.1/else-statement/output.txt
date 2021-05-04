@@ -1,2 +1,0 @@
-else statement working correctly
-outside of conditional
