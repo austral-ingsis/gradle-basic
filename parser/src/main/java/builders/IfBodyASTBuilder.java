@@ -19,11 +19,12 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
 
   @Override
   public ASTBuilder addASTBuilder(NumberASTBuilder newAST) throws BadTokenException {
+    if (getLeftChild() == null) {
+      throw new BadTokenException();
+    }
     if (getRightChild() == null) {
       return new IfBodyASTBuilder(
-          getValue(),
-          getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
-          getRightChild());
+          getValue(), getLeftChild().addASTBuilder(newAST), getRightChild());
     }
     return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
   }
@@ -271,6 +272,28 @@ public class IfBodyASTBuilder extends AbstractASTBuilder {
 
   @Override
   public ASTBuilder addASTBuilder(FunctionNameASTBuilder newAST) throws BadTokenException {
+    if (getRightChild() == null) {
+      return new IfBodyASTBuilder(
+          getValue(),
+          getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
+          getRightChild());
+    }
+    return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(ConstantKeywordASTBuilder newAST) throws BadTokenException {
+    if (getRightChild() == null) {
+      return new IfBodyASTBuilder(
+          getValue(),
+          getLeftChild() == null ? newAST : getLeftChild().addASTBuilder(newAST),
+          getRightChild());
+    }
+    return new IfBodyASTBuilder(getValue(), getLeftChild(), getRightChild().addASTBuilder(newAST));
+  }
+
+  @Override
+  public ASTBuilder addASTBuilder(VariableKeywordASTBuilder newAST) throws BadTokenException {
     if (getRightChild() == null) {
       return new IfBodyASTBuilder(
           getValue(),

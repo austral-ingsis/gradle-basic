@@ -1,5 +1,7 @@
 package cli;
 
+import exceptions.ASTBuildException;
+import exceptions.BadTokenException;
 import interpreter.Interpreter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,8 +12,9 @@ import java.util.function.Consumer;
 @SuppressWarnings("PMD")
 public class CLI {
 
-  public void interpret(File src, Consumer<String> lines) {
-    Interpreter interpreter = new Interpreter(lines);
+  public void interpret(File src, String version, Consumer<String> lines)
+      throws InvalidAlgorithmParameterException, ASTBuildException, BadTokenException {
+    Interpreter interpreter = new Interpreter(version, lines);
     try {
       Scanner scanner = new Scanner(src);
       StringBuilder builder = new StringBuilder();
@@ -46,7 +49,7 @@ public class CLI {
         }
       }
       scanner.close();
-    } catch (FileNotFoundException | InvalidAlgorithmParameterException e) {
+    } catch (FileNotFoundException e) {
       System.out.println("An error occurred.");
       e.printStackTrace();
     }

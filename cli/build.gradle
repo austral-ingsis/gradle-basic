@@ -4,4 +4,5 @@ plugins {
 
 dependencies {
     implementation project(':interpreter')
+    implementation project(':structures')
 }

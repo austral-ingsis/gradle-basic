@@ -1,7 +1,7 @@
 import exceptions.BadTokenException;
 import java.util.List;
 import lexer.Lexer;
-import lexer.PrintScriptLexer;
+import lexer.PrintScriptLexer2;
 import org.junit.jupiter.api.*;
 import token.Token;
 import token.TokenType;
@@ -9,7 +9,7 @@ import token.TokenType;
 public class LexerTest {
   @Test
   public void tokenShouldContainAll() throws BadTokenException {
-    Lexer lexer = new PrintScriptLexer();
+    Lexer lexer = new PrintScriptLexer2();
     String statement = "let a: number = a * a;";
     List<Token> tokens = lexer.lex(statement);
     Assertions.assertEquals(
@@ -33,7 +33,7 @@ public class LexerTest {
 
   @Test
   public void tokenShouldContainAll_2() throws BadTokenException {
-    Lexer lexer = new PrintScriptLexer();
+    Lexer lexer = new PrintScriptLexer2();
     String statement = "let str: string = \"!21432@!@##^&  TW#@1235&^*kl.lK:@@;'., \";";
     List<Token> tokens = lexer.lex(statement);
     Assertions.assertEquals(
