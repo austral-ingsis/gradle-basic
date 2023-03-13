@@ -5,21 +5,6 @@
  * Learn more about Gradle by exploring our samples at https://docs.gradle.org/8.0.2/samples
  */
 
-configurations {
-    ingsis
-}
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    ingsis 'org.apache.httpcomponents:httpclient:4.5.5'
-}
-
-tasks.register('listIngsis') {
-    dependsOn configurations.ingsis
-    doLast {
-        println "dependencies = ${configurations.ingsis.collect { File file -> file.name }}"
-    }
+plugins {
+    id 'java'
 }
