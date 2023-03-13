@@ -16,3 +16,10 @@ repositories {
 dependencies {
     ingsis 'org.apache.httpcomponents:httpclient:4.5.5'
 }
+
+tasks.register('listIngsis') {
+    dependsOn configurations.ingsis
+    doLast {
+        println "dependencies = ${configurations.ingsis.collect { File file -> file.name }}"
+    }
+}
